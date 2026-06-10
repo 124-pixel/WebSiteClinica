@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Especialidades</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet" />
+ <link rel="stylesheet" href="../../public/assets/design/styleEspecialidades.css">
+<link rel="stylesheet" href="../../public/assets/design/navbar.css">
+<link rel="stylesheet" href="../../public/assets/design/stylefooter.css">
+<script src="../../public/assets/engine/navbar.js" defer></script>
+<script src="../../public/assets/engine/footer.js" defer></script>
+</head>
+<body>
+
+  <!-- BREADCRUMB -->
+
+  <div id="navbar-container"></div>
+
+  <div class="title-especialidades">
+      <h1>Encuentra la especialidad que necesitas</h1>
+  </div>
+
+  <div class="layout">
+    
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <h3>Filtra tu búsqueda</h3>
+
+      <div class="filter-group">
+        <label>Por tipo de atención</label>
+        <div class="checkbox-item">
+          <input type="checkbox" id="presencial" onchange="applyFilters()" />
+          <span>Presencial</span>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="virtual" onchange="applyFilters()" />
+          <span>Virtual</span>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <label>Por sede</label>
+        <div class="checkbox-item"><input type="checkbox" value="La Molina" class="sede-cb" onchange="applyFilters()" /><span>La Molina</span></div>
+        <div class="checkbox-item"><input type="checkbox" value="Lima" class="sede-cb" onchange="applyFilters()" /><span>Lima</span></div>
+        <div class="checkbox-item"><input type="checkbox" value="San Borja" class="sede-cb" onchange="applyFilters()" /><span>San Borja</span></div>
+        <div class="checkbox-item"><input type="checkbox" value="San Isidro" class="sede-cb" onchange="applyFilters()" /><span>San Isidro</span></div>
+        <div class="checkbox-item"><input type="checkbox" value="Surco" class="sede-cb" onchange="applyFilters()" /><span>Surco</span></div>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="main">
+      <div class="search-row">
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="text" id="searchInput" placeholder="Busca entre nuestras especialidades" oninput="applyFilters()" />
+        </div>
+        <div class="select-wrap">
+          <select id="categoryFilter" onchange="applyFilters()">
+            <option value="">Filtrar por categoría</option>
+            <option value="Médica">Médica</option>
+            <option value="Quirúrgica">Quirúrgica</option>
+            <option value="Diagnóstico">Diagnóstico</option>
+            <option value="Salud Mental">Salud Mental</option>
+          </select>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+
+      <p class="results-count" id="resultsCount"></p>
+      <div class="specialty-list" id="list"></div>
+      <div class="pagination" id="pagination"></div>
+    </div>
+  </div>
+
+  <div class="footer-border">
+    </div>
+    
+    <div id="footer-container"></div>
+
+  <script>
+    const SPECIALTIES = [
+      { name: "Dermatología",        icon: "🩺", categoria: "Médica",       atencion: ["Presencial","Virtual"], sedes: ["Lima","San Isidro","Surco"],         desc: "Diagnóstico y tratamiento de enfermedades de la piel, con alta demanda y enfoque en la salud cutánea integral." },
+      { name: "Gastroenterología",   icon: "🫀", categoria: "Médica",       atencion: ["Presencial"],           sedes: ["San Borja","Lima","La Molina"],      desc: "Diagnóstico, prevención y tratamiento de enfermedades del sistema digestivo y órganos anexos como el hígado y el páncreas." },
+      { name: "Odontología",         icon: "🦷", categoria: "Médica",       atencion: ["Presencial","Virtual"], sedes: ["Surco","San Isidro"],                desc: "Diagnóstico, tratamiento y prevención de enfermedades bucales, promoviendo la salud oral con tecnología moderna." },
+      { name: "Endocrinología",      icon: "🧬", categoria: "Médica",       atencion: ["Presencial","Virtual"], sedes: ["Lima","San Borja"],                  desc: "Atiende alteraciones hormonales como diabetes, tiroides y enfermedades metabólicas con enfoque integral." },
+      { name: "Cardiología",         icon: "❤️", categoria: "Médica",       atencion: ["Presencial"],           sedes: ["San Isidro","Lima","Surco"],         desc: "Diagnóstico y tratamiento de enfermedades del corazón y sistema cardiovascular con tecnología de vanguardia." },
+      { name: "Neurología",          icon: "🧠", categoria: "Médica",       atencion: ["Presencial","Virtual"], sedes: ["San Borja","La Molina"],             desc: "Atención de enfermedades del sistema nervioso central y periférico, incluyendo cefaleas, epilepsia y demencias." },
+      { name: "Traumatología",       icon: "🦴", categoria: "Quirúrgica",   atencion: ["Presencial"],           sedes: ["Lima","San Isidro","Surco"],         desc: "Diagnóstico y tratamiento de lesiones del aparato locomotor, fracturas, esguinces y enfermedades degenerativas." },
+      { name: "Ginecología",         icon: "🌸", categoria: "Médica",       atencion: ["Presencial","Virtual"], sedes: ["San Borja","Lima","La Molina"],      desc: "Atención integral de la salud femenina, control prenatal, y tratamiento de enfermedades del sistema reproductor." },
+      { name: "Psiquiatría",         icon: "🧩", categoria: "Salud Mental", atencion: ["Presencial","Virtual"], sedes: ["San Isidro","Surco"],                desc: "Diagnóstico y tratamiento de trastornos mentales, emocionales y del comportamiento con enfoque biopsicosocial." },
+      { name: "Oftalmología",        icon: "👁️", categoria: "Quirúrgica",   atencion: ["Presencial"],           sedes: ["Lima","San Borja"],                  desc: "Atención de enfermedades de los ojos, corrección visual y cirugías refractivas con tecnología láser." },
+      { name: "Urología",            icon: "🔬", categoria: "Quirúrgica",   atencion: ["Presencial"],           sedes: ["La Molina","San Isidro"],            desc: "Diagnóstico y tratamiento de enfermedades del sistema urinario masculino y femenino, y sistema reproductor masculino." },
+      { name: "Reumatología",        icon: "🩹", categoria: "Médica",       atencion: ["Presencial","Virtual"], sedes: ["Lima","Surco","San Borja"],          desc: "Atención de enfermedades autoinmunes y reumáticas como artritis, lupus y osteoporosis." },
+      { name: "Medicina Interna",    icon: "🏥", categoria: "Médica",       atencion: ["Presencial","Virtual"], sedes: ["Lima","San Isidro","San Borja"],     desc: "Diagnóstico y tratamiento de enfermedades del adulto que afectan múltiples órganos y sistemas." },
+      { name: "Pediatría",           icon: "👶", categoria: "Médica",       atencion: ["Presencial","Virtual"], sedes: ["La Molina","Surco","Lima"],          desc: "Atención médica integral para niños y adolescentes, desde el recién nacido hasta los 18 años." },
+      { name: "Oncología",           icon: "🎗️", categoria: "Médica",       atencion: ["Presencial"],           sedes: ["San Isidro","San Borja"],            desc: "Diagnóstico, tratamiento y seguimiento de enfermedades oncológicas con un equipo multidisciplinario especializado." },
+      { name: "Radiología",          icon: "📡", categoria: "Diagnóstico",  atencion: ["Presencial"],           sedes: ["Lima","San Borja","San Isidro"],     desc: "Interpretación de imágenes médicas para el diagnóstico de enfermedades mediante rayos X, tomografía y resonancia." },
+      { name: "Anestesiología",      icon: "💉", categoria: "Quirúrgica",   atencion: ["Presencial"],           sedes: ["San Isidro","Surco"],                desc: "Manejo del dolor y sedación en procedimientos quirúrgicos y de cuidados intensivos con máxima seguridad." },
+      { name: "Psicología",          icon: "💬", categoria: "Salud Mental", atencion: ["Presencial","Virtual"], sedes: ["Lima","La Molina","Surco"],          desc: "Evaluación y tratamiento de problemas emocionales, conductuales y psicológicos mediante terapia cognitivo-conductual." },
+    ];
+
+    const PAGE_SIZE = 8;
+    let currentPage = 1;
+    let filtered = [...SPECIALTIES];
+
+    function applyFilters() {
+      currentPage = 1;
+      const q    = document.getElementById('searchInput').value.toLowerCase().trim();
+      const cat  = document.getElementById('categoryFilter').value;
+      const pres = document.getElementById('presencial').checked;
+      const virt = document.getElementById('virtual').checked;
+      const sedeCbs = [...document.querySelectorAll('.sede-cb:checked')].map(c => c.value);
+
+      filtered = SPECIALTIES.filter(s => {
+        if (q && !s.name.toLowerCase().includes(q)) return false;
+        if (cat && s.categoria !== cat) return false;
+        if (pres && !s.atencion.includes('Presencial')) return false;
+        if (virt && !s.atencion.includes('Virtual')) return false;
+        if (sedeCbs.length && !sedeCbs.some(sd => s.sedes.includes(sd))) return false;
+        return true;
+      });
+
+      render();
+    }
+
+    function render() {
+      const total = filtered.length;
+      const start = (currentPage - 1) * PAGE_SIZE;
+      const page  = filtered.slice(start, start + PAGE_SIZE);
+
+      document.getElementById('resultsCount').textContent =
+        total === 0
+          ? 'No se encontraron especialidades'
+          : `Mostrando ${start + 1}-${Math.min(start + PAGE_SIZE, total)} de ${total} especialidades`;
+
+      document.getElementById('list').innerHTML = page.map((s, i) => `
+        <div class="specialty-item" style="animation-delay:${i * 50}ms">
+          <div class="specialty-icon">${s.icon}</div>
+          <div class="specialty-info">
+            <div class="specialty-name">${s.name}</div>
+            <div class="specialty-desc">${s.desc}</div>
+          </div>
+          <div class="specialty-arrow">
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+        </div>
+      `).join('');
+
+      renderPagination(total);
+    }
+
+    function renderPagination(total) {
+      const pages = Math.ceil(total / PAGE_SIZE);
+      const el = document.getElementById('pagination');
+      if (pages <= 1) { el.innerHTML = ''; return; }
+
+      let html = `<button class="page-btn" onclick="goPage(${currentPage-1})" ${currentPage===1?'disabled':''}>‹</button>`;
+      for (let p = 1; p <= pages; p++) {
+        if (p === 1 || p === pages || Math.abs(p - currentPage) <= 1) {
+          html += `<button class="page-btn ${p===currentPage?'active':''}" onclick="goPage(${p})">${p}</button>`;
+        } else if (Math.abs(p - currentPage) === 2) {
+          html += `<span style="color:#9ca3af;padding:0 4px">…</span>`;
+        }
+      }
+      html += `<button class="page-btn" onclick="goPage(${currentPage+1})" ${currentPage===pages?'disabled':''}>›</button>`;
+      el.innerHTML = html;
+    }
+
+    function goPage(p) {
+      const pages = Math.ceil(filtered.length / PAGE_SIZE);
+      if (p < 1 || p > pages) return;
+      currentPage = p;
+      render();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    applyFilters();
+  </script>
+</body>
+</html>

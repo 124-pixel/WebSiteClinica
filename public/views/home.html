@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinica Internacional</title>
+    <link rel="stylesheet" href="../../public/assets/design/style.css">
+<link rel="stylesheet" href="../../public/assets/design/navbar.css">
+<link rel="stylesheet" href="../../public/assets/design/stylefooter.css">
+<script src="../../public/assets/engine/scrip.js" defer></script>
+<script src="../../public/assets/engine/navbar.js" defer></script>
+<script src="../../public/assets/engine/footer.js" defer></script>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div id="navbar-container"></div>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Te cuidamos, Te curamos.</h1>
+            <p>
+                Hola, ¿qué necesitas hacer hoy?
+            </p>
+        </div>
+
+        <!-- STATS -->
+        <div class="hero-stats">
+    <!-- Agendar una cita (Te lleva al Login o citas) -->
+    <a href="Login.html" class="stat-box">
+        <img src="https://clinicainternacional.com.pe/uploads/Group_1000005110_58255c6c67.svg" alt="Icono agendar cita">
+        <h2>Agendar una cita</h2>
+    </a>
+
+    <!-- Ver mis resultados -->
+    <a href="#" class="stat-box">
+        <img src="https://clinicainternacional.com.pe/uploads/Group_1000005106_18c9789549.svg" alt="Icono resultados">
+        <h2>Ver mis resultados</h2>
+    </a>
+
+    <!-- Buscar un medico -->
+    <a href="Physicians.html" class="stat-box">
+        <img src="https://clinicainternacional.com.pe/uploads/Group_1000005112_3dd2b1f967.svg" alt="Icono buscar médico">
+        <h2>Buscar un médico</h2>
+    </a>
+
+    <!-- Solicitar un servicio -->
+    <a href="#" class="stat-box">
+        <img src="https://clinicainternacional.com.pe/uploads/Group_1000005107_00a0252d31.svg" alt="Icono servicios">
+        <h2>Solicitar un servicio</h2>
+    </a>
+
+    <!-- Conocer las promociones -->
+    <a href="#" class="stat-box">
+        <img src="https://clinicainternacional.com.pe/uploads/Group_1000005108_c94a7594c2.svg" alt="Icono promociones">
+        <h2>Conocer las promociones</h2>
+    </a>
+
+    <!-- Conocer las especialidades -->
+    <a href="especialidades.html" class="stat-box">
+        <img src="https://clinicainternacional.com.pe/uploads/Group_1000005109_ca3d3788a6.svg" alt="Icono especialidades">
+        <h2>Conocer las especialidades</h2>
+    </a>
+</div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <div class="container-principal">
+        <div class="cart-js">
+            <div class="card">
+                <div class="info">
+                    <h3 id="titulo"></h3>
+                    <p id="texto"></p>
+                    <button class="btn-primary">Agenda aquí</button>
+                </div>
+
+                <div class="image-container">
+                    <img id="imagen" src="" alt="Especialista">
+                </div>
+            </div>
+
+            <div class="controles">
+                <button id="anterior"> &lt; </button>
+                <span id="contador"></span>
+                <button id="siguiente"> &gt; </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ESPECIALIDDADES CONTAINER -->
+
+    <div class="seccion-especialidades">
+
+        <div class="encabezado">
+            <h2>Nuestras Especialidades</h2>
+            <nav class="menu-filtros">
+                <button onclick="filtrar('todas')" class="btn-link">Especialidades Médicas</button>
+                <button onclick="filtrar('general')" class="btn-link">Atención General</button>
+                <button onclick="filtrar('quirurgica')" class="btn-link">Quirúrgicas</button>
+            </nav>
+        </div>
+
+        <div class="grid-especialidades">
+            <div class="tarjeta-medica" data-tipo="quirurgica">
+                <img src="https://clinicainternacional.com.pe/uploads/especialidades_oncologia_73ba5faf2a.jpg"
+                    alt="Cirugía">
+                <div class="contenido">
+                    <h3>Cirugía de Tórax</h3>
+                    <p>Tratamiento quirúrgico de enfermedades del tórax y pulmones.</p>
+                    <button class="btn-conoce">Conoce más</button>
+                </div>
+            </div>
+
+            <div class="tarjeta-medica" data-tipo="general">
+                <img src="https://clinicainternacional.com.pe/uploads/especialidades_cardiologia_ee8b9ac796.jpg"
+                    alt="General">
+                <div class="contenido">
+                    <h3>Atención General</h3>
+                    <p>Diagnóstico integral y tratamiento preventivo para adultos.</p>
+                    <button class="btn-conoce">Conoce más</button>
+                </div>
+            </div>
+
+            <div class="tarjeta-medica" data-tipo="general">
+                <img src="https://clinicainternacional.com.pe/uploads/ORTOPEDIA_Y_TRAUMATOLOGIA_70dfe2fbd0.webp"
+                    alt="General">
+                <div class="contenido">
+                    <h3>Atención General</h3>
+                    <p>Diagnóstico integral y tratamiento preventivo para adultos.</p>
+                    <button class="btn-conoce">Conoce más</button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <section class="election">
+        <div class="election-content">
+            <div class="election-info">
+                <h2>¿Porque elegirnos?</h2>
+                <p>Nuestras sedes de Lima y San Borja están acreditadas
+                    con la máxima distinción internacional otorgada a
+                    una entidad de salud.</p>
+            </div>
+
+
+            <div class="election-tarjeta">
+                <div class="imagen-container">
+                    <img id="imagenReferencia" src="" alt="referencia">
+                </div>
+
+                <div class="tarjeta-info">
+                    <div class="election-info-tarjeta">
+                        <p id="textoReferencia"></p>
+
+                    </div>
+
+                    <div class="controles-tarjeta">
+                        <div>
+                            <p id="nombreReferencia"></p>
+                            <p id="dniReferencia"></p>
+                        </div>
+
+                        <div>
+                            <button id="anteriorReferencia">&lt;</button>
+                            <span id="contadorReferencia">2/3</span>
+                            <button id="siguienteReferencia">&gt;</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="section-details">
+
+        <div class="title-detail">
+            <h2>Encuentra una sede cerca de ti.</h2>
+        </div>
+
+        <div class="lista-detalles">
+            <details class="tarjeta-detalle">
+                <summary class="titulo-detalle">
+                    <span>San Borja</span>
+                </summary>
+
+                <div class="contenido-detalle">
+                    <p>Av. Guardia Civil 385 - 433</p>
+
+                    <button type="button">
+                        Conoce mas
+                    </button>
+                </div>
+            </details>
+
+            <details class="tarjeta-detalle">
+                <summary class="titulo-detalle">
+                    <span>Lima</span>
+                </summary>
+
+                <div class="contenido-detalle">
+                    <p>Av. Inca Garcilaso de la Vega 1420</p>
+
+                    <button type="button">
+                        Conoce mas
+                    </button>
+                </div>
+            </details>
+
+            <details class="tarjeta-detalle">
+                <summary class="titulo-detalle">
+                    <span>Surco</span>
+                </summary>
+
+                <div class="contenido-detalle">
+                    <p>Av. El Polo 461</p>
+
+                    <button type="button">
+                        Conoce mas
+                    </button>
+                </div>
+            </details>
+
+            <details class="tarjeta-detalle">
+                <summary class="titulo-detalle">
+                    <span>San Isidro</span>
+                </summary>
+
+                <div class="contenido-detalle">
+                    <p>Av. Javier Prado 123</p>
+
+                    <button type="button">
+                        Conoce mas
+                    </button>
+                </div>
+            </details>
+
+            <details class="tarjeta-detalle">
+                <summary class="titulo-detalle">
+                    <span>La Molina</span>
+                </summary>
+
+                <div class="contenido-detalle">
+                    <p>Av. La Molina 456</p>
+
+                    <button type="button">
+                        Conoce mas
+                    </button>
+                </div>
+            </details>
+        </div>
+
+
+        <div class="image-detail">
+            <img src="https://clinicainternacional.com.pe/uploads/FACHADA_CI_79bd41f896.webp" alt="">
+        </div>
+    </section>
+
+
+
+
+
+
+    <section class="rabbit-section">
+
+        <!-- Cabecera -->
+        <div class="rabbit-header">
+
+            <h2>Servicios médicos para tu bienestar</h2>
+            <div class="line"></div>
+        </div>
+
+        <!-- Cards -->
+        <div class="rabbit-grid">
+
+            <div class="rabbit-card">
+                <!-- Ícono: estetoscopio con conejo decorativo sutil -->
+                <svg class="card-icon" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- orejas de conejo muy pequeñas y sutiles en la esquina -->
+                    <ellipse cx="10" cy="9" rx="3" ry="6" stroke="#2b59ff" stroke-width="1.2" fill="rgba(43,89,255,.05)"
+                        opacity=".5" />
+                    <ellipse cx="17" cy="9" rx="3" ry="6" stroke="#2b59ff" stroke-width="1.2" fill="rgba(43,89,255,.05)"
+                        opacity=".5" />
+                    <!-- estetoscopio -->
+                    <path d="M20 18 Q20 30 30 30" stroke="#2b59ff" stroke-width="2" stroke-linecap="round"
+                        fill="none" />
+                    <path d="M28 18 Q28 30 30 30" stroke="#2b59ff" stroke-width="2" stroke-linecap="round"
+                        fill="none" />
+                    <circle cx="30" cy="34" r="5" stroke="#2b59ff" stroke-width="1.8" fill="rgba(43,89,255,.1)" />
+                    <line x1="18" y1="18" x2="30" y2="18" stroke="#2b59ff" stroke-width="2" stroke-linecap="round" />
+                    <circle cx="18" cy="18" r="2" fill="#2b59ff" />
+                    <circle cx="30" cy="18" r="2" fill="#2b59ff" />
+                </svg>
+                <span class="card-tag">Consulta general</span>
+                <h3>Revisión completa de salud</h3>
+                <p>Evaluamos tu estado general: presión, glucosa, peso y signos vitales con atención personalizada en
+                    cada visita.</p>
+            </div>
+
+            <div class="rabbit-card">
+                <svg class="card-icon" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- orejas sutiles -->
+                    <ellipse cx="10" cy="9" rx="3" ry="6" stroke="#2b59ff" stroke-width="1.2" fill="rgba(43,89,255,.05)"
+                        opacity=".5" />
+                    <ellipse cx="17" cy="9" rx="3" ry="6" stroke="#2b59ff" stroke-width="1.2" fill="rgba(43,89,255,.05)"
+                        opacity=".5" />
+                    <!-- escudo con cruz médica -->
+                    <path d="M26 16 L36 20 L36 32 Q36 40 26 44 Q16 40 16 32 L16 20 Z" stroke="#2b59ff"
+                        stroke-width="1.8" fill="rgba(43,89,255,.07)" />
+                    <line x1="26" y1="24" x2="26" y2="36" stroke="#2b59ff" stroke-width="2" stroke-linecap="round" />
+                    <line x1="20" y1="30" x2="32" y2="30" stroke="#2b59ff" stroke-width="2" stroke-linecap="round" />
+                </svg>
+                <span class="card-tag">Medicina preventiva</span>
+                <h3>Chequeos y control periódico</h3>
+                <p>Programas de prevención para detectar a tiempo enfermedades crónicas y mantener tu salud en óptimas
+                    condiciones.</p>
+            </div>
+
+            <div class="rabbit-card">
+                <svg class="card-icon" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- orejas sutiles -->
+                    <ellipse cx="10" cy="9" rx="3" ry="6" stroke="#2b59ff" stroke-width="1.2" fill="rgba(43,89,255,.05)"
+                        opacity=".5" />
+                    <ellipse cx="17" cy="9" rx="3" ry="6" stroke="#2b59ff" stroke-width="1.2" fill="rgba(43,89,255,.05)"
+                        opacity=".5" />
+                    <!-- corazón con pulso -->
+                    <path
+                        d="M26 38 C26 38 14 30 14 23 C14 18 18 15 22 16 C24 17 26 19 26 19 C26 19 28 17 30 16 C34 15 38 18 38 23 C38 30 26 38 26 38Z"
+                        stroke="#2b59ff" stroke-width="1.8" fill="rgba(43,89,255,.08)" />
+                    <path d="M16 24 L20 24 L22 20 L25 28 L27 22 L29 26 L31 24 L36 24" stroke="#2b59ff"
+                        stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                </svg>
+                <span class="card-tag">Cardiología</span>
+                <h3>Salud cardiovascular integral</h3>
+                <p>Electrocardiogramas, control de presión arterial y evaluación del riesgo cardíaco con tecnología de
+                    punta.</p>
+            </div>
+
+            <div class="rabbit-card">
+                <svg class="card-icon" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- orejas sutiles -->
+                    <ellipse cx="10" cy="9" rx="3" ry="6" stroke="#2b59ff" stroke-width="1.2" fill="rgba(43,89,255,.05)"
+                        opacity=".5" />
+                    <ellipse cx="17" cy="9" rx="3" ry="6" stroke="#2b59ff" stroke-width="1.2" fill="rgba(43,89,255,.05)"
+                        opacity=".5" />
+                    <!-- tubo de laboratorio -->
+                    <rect x="21" y="14" width="10" height="18" rx="2" stroke="#2b59ff" stroke-width="1.8"
+                        fill="rgba(43,89,255,.07)" />
+                    <path d="M21 27 Q26 24 31 27" stroke="#2b59ff" stroke-width="1.2" fill="rgba(43,89,255,.15)" />
+                    <path d="M21 27 L21 30 Q21 32 26 32 Q31 32 31 30 L31 27 Q26 24 21 27Z" fill="rgba(43,89,255,.15)"
+                        stroke="none" />
+                    <line x1="24" y1="14" x2="28" y2="14" stroke="#2b59ff" stroke-width="2" stroke-linecap="round" />
+                    <!-- burbujas -->
+                    <circle cx="25" cy="22" r="1" fill="#2b59ff" opacity=".4" />
+                    <circle cx="28" cy="19" r="1" fill="#2b59ff" opacity=".4" />
+                </svg>
+                <span class="card-tag">Laboratorio</span>
+                <h3>Análisis clínicos rápidos</h3>
+                <p>Resultados en pocas horas: hemogramas, glucemia, perfil lipídico y más, con toma de muestra en
+                    clínica.</p>
+            </div>
+
+        </div>
+
+        <!-- Banner CTA -->
+        <div class="rabbit-banner banner-wrap">
+            <div class="banner-text">
+                <h3>¿Primera vez en nuestra clínica?</h3>
+                <p>Reserva tu cita en minutos. Nuestro equipo médico está listo para atenderte con calidez y
+                    profesionalismo.</p>
+            </div>
+
+            <!-- Conejo decorativo sutil en el fondo del banner -->
+            <svg class="banner-rabbit" width="160" height="160" viewBox="0 0 52 52" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="18" cy="13" rx="5" ry="11" fill="#fff" />
+                <ellipse cx="34" cy="13" rx="5" ry="11" fill="#fff" />
+                <ellipse cx="26" cy="33" rx="13" ry="11" fill="#fff" />
+            </svg>
+
+            <a href="#" class="btn-cita">
+                Agendar cita
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke="#fff" stroke-width="1.6" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </a>
+        </div>
+
+    </section>
+
+    <div class="footer-border">
+    </div>
+    
+    <div id="footer-container"></div>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Centro de Diagnóstico por Imágenes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../public/assets/design/styleDiagnosticos.css">
+<link rel="stylesheet" href="../../public/assets/design/navbar.css">
+<link rel="stylesheet" href="../../public/assets/design/stylefooter.css">
+<script src="../../public/assets/engine/navbar.js" defer></script>
+<script src="../../public/assets/engine/footer.js" defer></script>
+<script src="../../public/assets/engine/diagnosticos.js" defer></script> 
+</head>
+<body>
+
+  <!-- BREADCRUMB -->
+  <div id="navbar-container"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <h1 class="hero-title">Resultados precisos para un diagnóstico seguro y confiable</h1>
+      <p class="hero-desc">En el Centro de Diagnóstico por Imágenes (CDI) realizamos estudios de tomografía, resonancia magnética y diversos procedimientos de radiología vascular e intervencionista. Si cuentas con una orden médica externa o emitida por otra institución de salud, completa tus datos y nuestro equipo se comunicará contigo para orientarte y programar tu atención.</p>
+      <a href="#" class="btn-primary">Regístrate aquí</a>
+    </div>
+    <div class="hero-img">
+      <span class="img-placeholder">🏥</span>
+    </div>
+  </section>
+
+  <!-- BENEFICIOS -->
+  <section class="beneficios">
+    <h2 class="section-title">Beneficios de atenderte con nosotros</h2>
+    <div class="cards-grid">
+      <div class="card">
+        <span class="card-icon">👨‍⚕️</span>
+        <div class="card-title">Diagnóstico por expertos en diversas disciplinas</div>
+        <p class="card-desc">Nuestro equipo médico está conformado por médicos radiólogos y especialistas clínicos subespecializados en cada área de las imágenes diagnósticas.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🖥️</span>
+        <div class="card-title">Tecnología de última generación (CDI)</div>
+        <p class="card-desc">Equipos de última generación que garantizan imágenes más precisas y diagnósticos más confiables, respaldados por nuestra experiencia como pioneros en múltiples servicios de imágenes en el país.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">⏱️</span>
+        <div class="card-title">Resultados rápidos y accesibles</div>
+        <p class="card-desc">Accede a tus resultados en un máximo de 48 horas, de forma digital y segura. Conservamos tu historial de estudios por imágenes para una mejor precisión diagnóstica y comparaciones futuras.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">📋</span>
+        <div class="card-title">Catálogo de estudios</div>
+        <p class="card-desc">Resonancias magnéticas, tomografía, ecografías, mamografías (3D–tomosíntesis y contrastada), densitometría corporal, rayos X convencionales y contrastados, todos los tipos de biopsias mamarias, biopsias prostáticas por fusión de imágenes, y los procedimientos vasculares e intervencionistas realizados bajo los más altos estándares de calidad.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESPECIALIDADES Y SERVICIOS -->
+  <div class="servicios">
+    <div class="servicios-left">
+      <h2>Especialidades y Servicios disponibles</h2>
+
+      <div class="tabs">
+        <div class="tab active" onclick="switchTab('estudios', this)">Estudios</div>
+        <div class="tab" onclick="switchTab('condiciones', this)">Condiciones Generales</div>
+      </div>
+
+      <!-- ESTUDIOS -->
+      <div id="tab-estudios">
+        <div class="service-item">
+          <div class="service-icon">🧲</div>
+          <div class="service-info">
+            <div class="service-name">Resonancia magnética</div>
+            <p class="service-desc">Genera imágenes muy precisas con un campo magnético y ondas de radio. Permite ver cerebro, médula, articulaciones y posibles tumores. Es importante informar si tiene implantes metálicos o marcapasos.</p>
+          </div>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">📡</div>
+          <div class="service-info">
+            <div class="service-name">Tomografía computada</div>
+            <p class="service-desc">Combina múltiples rayos X desde distintos ángulos para obtener imágenes detalladas del cuerpo. Es rápida y útil para emergencias, para evaluar huesos, órganos internos y vasos sanguíneos. Puede requerir contraste e implica una baja exposición a radiación.</p>
+          </div>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">🔬</div>
+          <div class="service-info">
+            <div class="service-name">Biopsias mamarias</div>
+            <p class="service-desc">Extrae una pequeña muestra de tejido de una zona sospechosa, guiada por eco o mamografía. El análisis microscópico permite un diagnóstico exacto para confirmar o descartar cáncer. Se realiza bajo anestesia local.</p>
+          </div>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">🩺</div>
+          <div class="service-info">
+            <div class="service-name">Procedimientos de intervencionismo vascular y no vascular</div>
+            <p class="service-desc">Procedimientos poco invasivos guiados por imagen y realizados por un radiólogo. Contamos con biopsias prostáticas por fusión, intervencionismo no vascular (biopsias, drenajes, etc), e intervencionismo vascular (embolizaciones, angiografías, escleroterapia, etc).</p>
+          </div>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">🦴</div>
+          <div class="service-info">
+            <div class="service-name">Densitometría corporal</div>
+            <p class="service-desc">Analiza la densidad ósea para detectar osteoporosis y riesgo de fracturas; además, evalúa la composición corporal (músculo y grasa). Es un examen rápido, sin dolor y con baja radiación para controlar tu salud ósea.</p>
+          </div>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">🎀</div>
+          <div class="service-info">
+            <div class="service-name">Mamografías</div>
+            <p class="service-desc">Es una radiografía especializada que permite detectar cáncer de mama. Requiere realizar una breve compresión de la mama y utiliza muy poca radiación. Es el método más efectivo para identificar lesiones pequeñas.</p>
+          </div>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">🔊</div>
+          <div class="service-info">
+            <div class="service-name">Ecografías de todas las especialidades</div>
+            <p class="service-desc">Es un estudio que produce imágenes con ondas de sonido en tiempo real. No usa radiación y es apta en el embarazo. Se usa para evaluar abdomen, tiroides, mamas y el flujo sanguíneo (Doppler).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONDICIONES GENERALES -->
+      <div id="tab-condiciones" style="display:none;">
+        <p style="padding:20px 0;color:#6b7280;font-size:14px;line-height:1.8;border-bottom:1px solid #e5e7eb;">Para acceder a los servicios del CDI es necesario contar con una orden médica vigente emitida por un profesional de la salud autorizado o por otra institución de salud reconocida.</p>
+        <p style="padding:20px 0;color:#6b7280;font-size:14px;line-height:1.8;border-bottom:1px solid #e5e7eb;">Los resultados de los estudios estarán disponibles en un plazo máximo de 48 horas hábiles desde la realización del examen, de forma digital y segura a través de nuestro portal de pacientes.</p>
+        <p style="padding:20px 0;color:#6b7280;font-size:14px;line-height:1.8;border-bottom:1px solid #e5e7eb;">Algunos procedimientos requieren preparación previa, como ayuno o suspensión de medicamentos. El personal del CDI le informará con anticipación los requisitos específicos para su estudio.</p>
+        <p style="padding:20px 0;color:#6b7280;font-size:14px;line-height:1.8;">Atendemos todos los seguros de salud. Consulte con su asegurador la cobertura específica para cada tipo de estudio.</p>
+      </div>
+    </div>
+
+    <div class="servicios-img">
+      <span class="img-placeholder">🩻</span>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <h2>Preguntas frecuentes</h2>
+
+    <div class="faq-tabs">
+      <div class="faq-tab active" onclick="switchFaqTab('acceso', this)">
+        <span class="faq-tab-icon">📋</span>
+        Acceso y requisitos
+      </div>
+      <div class="faq-tab" onclick="switchFaqTab('procedimiento', this)">
+        <span class="faq-tab-icon">💧</span>
+        Procedimiento y tiempos de entrega
+      </div>
+      <div class="faq-tab" onclick="switchFaqTab('cobertura', this)">
+        <span class="faq-tab-icon">📍</span>
+        Cobertura y duración
+      </div>
+    </div>
+
+    <!-- ACCESO -->
+    <div class="faq-list" id="faq-acceso">
+      <div class="faq-item open">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          ¿Cómo puedo agendar una cita para estudios de imágenes?
+          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-answer">
+          <p><strong>Para agendar</strong> tus exámenes de imágenes con una orden interna comunícate al número <strong>(01) 6196100, opción 2 e inmediatamente opción 3</strong>, o acércate a un módulo de atención en imágenes.</p>
+          <br>
+          <p><strong>Recuerda que para reservar tu cita se debe contar con una orden médica.</strong></p>
+          <br>
+          <p>Si tienes que realizarte exámenes de <strong>Rayos X sin contraste</strong>, puedes agendar el examen directamente desde nuestra plataforma de agendamiento. Considera que este servicio está disponible en las sedes <strong>San Borja, Lima y Surco</strong>.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          ¿Qué estudios se realizan en el CDI?
+          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-answer">
+          <p>Realizamos resonancias magnéticas, tomografías, ecografías, mamografías (3D–tomosíntesis), densitometría corporal, rayos X convencionales y contrastados, biopsias mamarias y prostáticas, y procedimientos vasculares e intervencionistas.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          ¿En qué sedes puedo realizar mis estudios de imágenes?
+          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-answer">
+          <p>Contamos con el servicio de imágenes en nuestras sedes de <strong>San Borja, Lima, San Isidro, La Molina y Surco</strong>. Algunos estudios especializados están disponibles solo en sedes específicas.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          ¿Cuáles son las condiciones generales?
+          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-answer">
+          <p>Se requiere orden médica vigente para la mayoría de estudios. Atendemos todos los seguros de salud. Los resultados se entregan en un máximo de 48 horas de forma digital.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROCEDIMIENTO -->
+    <div class="faq-list" id="faq-procedimiento" style="display:none;">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          ¿Cuánto tiempo demora recibir mis resultados?
+          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-answer">
+          <p>Los resultados están disponibles en un máximo de <strong>48 horas hábiles</strong> desde la realización del estudio, de forma digital a través de nuestro portal de pacientes.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          ¿Necesito preparación previa para mis estudios?
+          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-answer">
+          <p>Depende del tipo de estudio. Algunos requieren ayuno, hidratación previa o suspensión de ciertos medicamentos. Nuestro personal le informará con anticipación los requisitos específicos.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- COBERTURA -->
+    <div class="faq-list" id="faq-cobertura" style="display:none;">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          ¿Qué seguros de salud aceptan?
+          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-answer">
+          <p>Atendemos <strong>todos los seguros de salud</strong>. Consulte con su asegurador la cobertura específica para cada tipo de estudio de imágenes.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          ¿Por cuánto tiempo conservan mi historial de imágenes?
+          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-answer">
+          <p>Conservamos tu historial de estudios por imágenes de forma segura para una mejor precisión diagnóstica y comparaciones futuras con nuevos estudios.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer-border">
+    </div>
+    
+    <div id="footer-container"></div>
+
+
+</body>
+</html>

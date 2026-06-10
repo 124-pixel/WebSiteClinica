@@ -1,0 +1,292 @@
+* {
+    box-sizing: border-box;
+    /* Evita que el padding rompa el ancho */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+   
+    :root {
+      --blue: #1a56a0;
+      --blue-btn: #2563eb;
+      --gray: #6b7280;
+      --border: #e5e7eb;
+      --text: #111827;
+      --bg: #ffffff;
+    }
+ 
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding-top: 70px;
+    }
+ 
+    /* BREADCRUMB */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 18px 64px;
+      font-size: 14px;
+      color: var(--gray);
+    }
+    .breadcrumb a { color: var(--gray); text-decoration: none; }
+    .breadcrumb svg { width: 16px; height: 16px; fill: var(--gray); }
+ 
+    /* PAGE TITLE */
+    .page-title {
+      font-family: sans-serif;
+      font-size: 2.1rem;
+      font-weight: 700;
+      padding: 30px 0px 20px;
+      color: var(--text);
+    }
+ 
+    /* WRAPPER */
+    .wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 64px 80px;
+    }
+ 
+    /* SECTION TITLE */
+    .section-title {
+      font-family: sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 28px;
+      color: var(--text);
+    }
+ 
+    /* ── CARDS GRID ── */
+    .cards-row {
+      display: grid;
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+    .cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .cols-4 { grid-template-columns: repeat(4, 1fr); }
+    .cols-1 { grid-template-columns: 360px; }
+ 
+    /* PROMO CARD */
+    .promo-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+      transition: box-shadow .2s, transform .2s;
+      cursor: pointer;
+    }
+    .promo-card:hover {
+      box-shadow: 0 8px 32px rgba(26,86,160,.12);
+      transform: translateY(-3px);
+    }
+ 
+    /* CARD IMAGE */
+    .card-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #c9d9f0 0%, #dce8f8 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .card-img.blue-bg {
+      background: linear-gradient(135deg, #1a3a8f 0%, #2563eb 100%);
+    }
+    .card-img.green-bg {
+      background: linear-gradient(135deg, #064e3b 0%, #059669 100%);
+    }
+    .card-img.purple-bg {
+      background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 100%);
+    }
+    .card-img.rose-bg {
+      background: linear-gradient(135deg, #9f1239 0%, #e11d48 100%);
+    }
+    .card-img .emoji-bg {
+      font-size: 64px;
+      opacity: .25;
+    }
+ 
+    /* PRICE BADGE */
+    .price-badge {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      background: var(--blue-btn);
+      color: #fff;
+      border-radius: 10px;
+      padding: 8px 14px;
+      text-align: center;
+      min-width: 90px;
+    }
+    .price-badge .label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      opacity: .85;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .price-badge .price {
+      font-size: 1.6rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .price-badge .currency {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+ 
+    /* DARK CARD (segunda opinión style) */
+    .dark-card .card-img {
+      aspect-ratio: 16/10;
+    }
+    .dark-card .card-img-text {
+      position: absolute;
+      left: 20px;
+      bottom: 20px;
+      color: #fff;
+      max-width: 200px;
+    }
+    .dark-card .card-img-text p {
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+    .dark-card .card-img-text strong { font-weight: 700; }
+    .dark-card .card-img-text a {
+      display: inline-block;
+      background: var(--blue-btn);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+ 
+    /* CARD BODY */
+    .card-body {
+      padding: 20px 20px 22px;
+    }
+    .card-name {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+    .card-desc {
+      font-size: 13.5px;
+      color: var(--gray);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+    }
+    .inversion-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .inversion-price {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .ver-detalles {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--blue-btn);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .ver-detalles:hover { color: #1d4ed8; }
+ 
+    /* BANNER CARD */
+    .banner-card {
+      border-radius: 16px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #1a3a8f 0%, #2563eb 100%);
+      padding: 36px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 60px;
+      cursor: pointer;
+      transition: box-shadow .2s;
+    }
+    .banner-card:hover { box-shadow: 0 8px 32px rgba(37,99,235,.25); }
+    .banner-text h3 {
+      font-family: 'Source Serif 4', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .banner-text p {
+      font-size: 14px;
+      color: rgba(255,255,255,.8);
+      line-height: 1.6;
+      max-width: 500px;
+    }
+    .banner-btn {
+      display: inline-block;
+      background: #fff;
+      color: var(--blue-btn);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 13px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background .2s;
+      flex-shrink: 0;
+    }
+    .banner-btn:hover { background: #e8eef7; }
+ 
+    /* DESCUENTO BADGE */
+    .descuento-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: #ef4444;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 50px;
+      letter-spacing: .5px;
+    }
+ 
+    /* DIVIDER */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 0 50px;
+    }
+ 
+    @media (max-width: 1024px) {
+      .cols-3 { grid-template-columns: repeat(2, 1fr); }
+      .cols-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 700px) {
+      .wrapper { padding: 0 24px 60px; }
+      .breadcrumb { padding: 14px 24px; }
+      .page-title { padding: 0 24px 28px; font-size: 1.6rem; }
+      .cols-3, .cols-2, .cols-4, .cols-1 { grid-template-columns: 1fr; }
+      .banner-card { flex-direction: column; padding: 28px 24px; }
+    }

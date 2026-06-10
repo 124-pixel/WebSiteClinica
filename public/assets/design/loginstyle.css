@@ -1,0 +1,234 @@
+*{ box-sizing: border-box; margin: 0;padding: 0;}
+:root {
+      --bg: #f5f3ef;
+      --panel: #ffffff;
+      --ink: #1a1a1a;
+      --muted: #8a8680;
+      --accent: #2d6a6a;
+      --accent-light: #e8f0f0;
+      --line: #e2ddd8;
+      --error: #b94a3b;
+    }
+ 
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--ink);
+      overflow: hidden;
+    }
+
+    .form-left{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 14rem;
+      background: var(--panel);
+      
+    }
+
+ 
+
+    .form{
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+    }
+
+       .title-form{
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 2rem;
+    }
+
+    .title-form p{
+      margin-top: 1rem;
+    }
+
+    .tile-lie{
+      border-bottom: 1px solid black;
+      max-width: 50px;
+      margin-top: 1rem;
+    }
+
+    .form label{
+      color: var(--muted);
+      font-size: 13px;
+      font-family: 'DM Sans', sans-serif;
+      letter-spacing: 2px;
+    }
+
+    .form input{
+      border: 1px solid rgba(0, 0, 0, 0.151);
+      padding: 1rem;
+      width: 400px;
+      height: 50px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      border-radius: 0.5rem;
+    }
+
+    .form-option{
+      display: flex;
+      justify-content: space-between;
+      gap:6.5rem;
+      margin: 10px 0;
+    }
+
+    .remenber{
+      align-items: flex-start;
+      font-size: 13px;
+
+    }
+
+    .form-option a{
+      font-size: 13px;
+      font-style: none;
+      text-decoration: none;
+      color: var(--muted);
+    }
+
+    .form-option a:hover{
+      color: var(--accent);
+    }
+
+    .btn-login{
+      background-color: var(--accent);
+      transition: background-color 0.3s ease;
+      margin-top: 25px;
+      padding: 12px 150px;
+      border: none;
+      border-radius: 0.5rem;
+      color: var(--accent-light);
+      text-decoration: none;
+      cursor: pointer;
+      
+    }
+    .btn-login:hover{
+      background-color: #2d6a6ad0;
+    }
+    
+
+    .form-acceso{
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      margin-top: 1.5rem;
+    }
+
+    .form-acceso p{
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .form-acceso a{
+      text-decoration: none;
+      font-size: 14px;
+      color: var(--accent);
+      transition: color 0.3s ease;
+    }
+    .form-acceso a:hover{
+      color: #2d6a6abd;
+    }
+
+
+    .form-rigth {
+      position: relative;
+      background: var(--accent);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 3.5rem;
+      overflow: hidden;
+    }
+ 
+    .form-rigth::before {
+      content: '';
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, #d0ccc7 30%, #d0ccc7 70%, transparent);
+    }
+ 
+    .form-rigth::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 90% 70% at 60% 30%, rgba(45,106,106,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+ 
+    .right-content {
+      position: relative;
+      z-index: 1;
+      max-width: 320px;
+    }
+ 
+    .right-tag {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--line);
+      margin-bottom: 1.4rem;
+      display: block;
+    }
+ 
+    .right-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--accent-light);
+      margin-bottom: 1.4rem;
+    }
+ 
+    .right-title em {
+      font-style: italic;
+      color: var(--accent-light);
+    }
+ 
+    .right-line {
+      width: 32px;
+      height: 1px;
+      background: #2d6a6a;
+      margin-bottom: 1.4rem;
+      opacity: 0.5;
+    }
+ 
+    .right-desc {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      color:var(--accent-light);
+      line-height: 1.8;
+    }
+ 
+    .right-cross {
+      position: absolute;
+      top: 3rem;
+      right: 3.5rem;
+      width: 22px;
+      height: 22px;
+      opacity: 0.18;
+    }
+ 
+    .right-cross::before,
+    .right-cross::after {
+      content: '';
+      position: absolute;
+      background: #1a1a1a;
+      border-radius: 1px;
+    }
+ 
+    .right-cross::before {
+      width: 100%; height: 34%;
+      top: 33%; left: 0;
+    }
+ 
+    .right-cross::after {
+      width: 34%; height: 100%;
+      top: 0; left: 33%;
+    }
