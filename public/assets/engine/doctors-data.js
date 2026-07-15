@@ -259,29 +259,4 @@ const DOCTORS_DATA = {
     ]
   },
 
-  "011": {
-    "cmp": "Amor Eterno - 002",
-    "nombre": "Dra. Melissa Abigail",
-    "apellido": "De mi corazón",
-    "especialidad": "Obstetricia (Experta en traer luz y felicidad al mundo)",
-    "atencion": "24/7 en mis pensamientos",
-    "foto": "../../public/assets/img/meli.webp",
-    "sedes": [
-      {
-        "nombre": "Mi Lugar Favorito",
-        "direccion": "Cualquier lugar del mundo, siempre que sea a tu lado",
-        "telefono": "El de tu novio que te ama",
-        "foto": ""
-      }
-    ],
-    "horarios": [
-      { "dia": "Lunes a Domingo", "hora": "00:00 a 24:00 (Siempre disponible para ti)" },
-      { "dia": "Futuro", "hora": "Toda la vida juntos" }
-    ],
-    "educacion": [
-      { "titulo": "La estudiante de Obstetricia más dedicada y hermosa", "universidad": "La que tiene la suerte de tenerte en sus aulas" },
-      { "titulo": "Especialista en hacerme el novio más feliz del mundo", "universidad": "Universidad de Nuestro Amor" },
-      { "titulo": "Magíster en sonrisas perfectas y abrazos que curan todo", "universidad": "Graduada con honores en mi corazón" }
-    ]
-}
 };

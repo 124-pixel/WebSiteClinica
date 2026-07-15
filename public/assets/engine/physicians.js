@@ -9,7 +9,7 @@ const DOCTORS = [
       { cmp:"008", name:"Dr. Paul Rojas",     specialty:"Traumatología",      foto:"../../public/assets/img/7184.webp",  sedes:["Sede Central"], atencion:["Presencial"] },
       { cmp:"009", name:"Dr. Felipe Lazo",    specialty:"Gastroenterología",  foto:"../../public/assets/img/7156.webp",  sedes:["Sede Norte"],   atencion:["Presencial"] },
       { cmp:"010", name:"Dra. Rosa Valdivia", specialty:"Cardiología",        foto:"../../public/assets/img/6552.webp",  sedes:["Sede Norte"],   atencion:["Presencial"] },
-      { cmp:"011", name:"Dra. Melissa Abigail", specialty:"Obstetricia",        foto:"../../public/assets/img/meli.webp",  sedes:["Mi Lugar Favorito"],   atencion:["24/7 en mis pensamientos"] }
+  
 
     ];
 
