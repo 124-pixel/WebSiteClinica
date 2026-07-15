@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel médico · Clínica Internacional</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
+<link rel="stylesheet" href="../assets/design/styleHomeMedico.css">
+<script src="../assets/engine/homeMedico.js" defer></script>
+</head>
+<body>
+
+  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Abrir menú">
+    <i class="ti ti-menu-2"></i>
+  </button>
+
+  <div class="layout">
+
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon"><i class="ti ti-stethoscope"></i></div>
+        <div class="brand-text">
+          <p>Clínica Internacional</p>
+          <p>Panel médico</p>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" data-view="inicio" onclick="showSection('inicio')">
+          <i class="ti ti-home"></i><span>Inicio</span>
+        </a>
+        <a href="#" class="nav-item" data-view="pacientes" onclick="showSection('pacientes')">
+          <i class="ti ti-users"></i><span>Pacientes</span>
+        </a>
+        <a href="#" class="nav-item" data-view="agenda" onclick="showSection('agenda')">
+          <i class="ti ti-calendar"></i><span>Agenda</span>
+        </a>
+        <a href="#" class="nav-item" data-view="resultados" onclick="showSection('resultados')">
+          <i class="ti ti-flask"></i><span>Resultados y recetas</span>
+          <span class="nav-badge" id="resultadosBadge">0</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-help">
+        <p>¿Necesitas ayuda?</p>
+        <p>Contacta a soporte técnico si tienes algún problema con el sistema.</p>
+        <button class="help-btn" id="supportBtn">Obtener ayuda</button>
+      </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <main class="main">
+
+      <header class="topbar">
+        <div class="search-box">
+          <i class="ti ti-search"></i>
+          <input type="text" placeholder="Buscar pacientes, citas, resultados…" id="searchInput">
+        </div>
+
+        <div class="topbar-actions">
+          <div class="bell-wrap">
+            <button class="icon-btn" id="bellBtn" aria-label="Notificaciones">
+              <i class="ti ti-bell"></i>
+              <span class="dot"></span>
+            </button>
+            <div class="dropdown" id="bellDropdown">
+              <p class="dropdown-title">Notificaciones</p>
+              <div class="dropdown-item" id="notifPlaceholder">
+                <i class="ti ti-info-circle"></i>
+                <span>No tienes notificaciones nuevas</span>
+              </div>
+            </div>
+          </div>
+
+          <button class="logout-btn" id="logoutBtn">
+            <i class="ti ti-logout"></i>
+            Cerrar sesión
+          </button>
+        </div>
+      </header>
+
+      <div class="content">
+
+        <!-- ══ INICIO ══════════════════════════════════ -->
+        <section id="inicio" class="section active">
+
+          <h1 class="page-title">Panel del médico</h1>
+          <p class="page-subtitle" id="dateText">Cargando fecha…</p>
+
+          <section class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-top">
+                <div class="stat-icon blue"><i class="ti ti-users"></i></div>
+                <span class="stat-tag"><i class="ti ti-calendar"></i> Hoy</span>
+              </div>
+              <p class="stat-label">Pacientes hoy</p>
+              <p class="stat-value" id="statHoy">—</p>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-top">
+                <div class="stat-icon green"><i class="ti ti-circle-check"></i></div>
+                <span class="stat-tag" id="statConfirmadosTag">—</span>
+              </div>
+              <p class="stat-label">Confirmados</p>
+              <p class="stat-value" id="statConfirmados">—</p>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-top">
+                <div class="stat-icon purple"><i class="ti ti-clock"></i></div>
+                <span class="stat-tag">Próxima</span>
+              </div>
+              <p class="stat-label">Próxima cita</p>
+              <p class="stat-value" id="statProxima">—</p>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-top">
+                <div class="stat-icon orange"><i class="ti ti-flask"></i></div>
+                <span class="stat-tag">Por revisar</span>
+              </div>
+              <p class="stat-label">Resultados pendientes</p>
+              <p class="stat-value" id="statPendientes">—</p>
+            </div>
+          </section>
+
+          <section class="content-grid">
+
+            <div class="panel">
+              <div class="panel-header">
+                <h2>Agenda de hoy</h2>
+                <span class="view-all" onclick="showSection('agenda')">Ver todo</span>
+              </div>
+              <div class="agenda-list" id="agendaList">
+                <p style="text-align:center;color:var(--text-secondary);padding:24px 0;">Cargando agenda…</p>
+              </div>
+            </div>
+
+            <div>
+              <div class="quick-panel">
+                <h2>Accesos rápidos</h2>
+                <p>Gestiona tus tareas del día de forma eficiente</p>
+                <div class="quick-actions">
+                  <button class="quick-btn primary" onclick="showSection('pacientes')">Ver pacientes</button>
+                  <button class="quick-btn secondary" onclick="showSection('resultados')">Agregar resultado o receta</button>
+                </div>
+              </div>
+            </div>
+
+          </section>
+        </section>
+
+        <!-- ══ PACIENTES ═══════════════════════════════ -->
+        <section id="pacientes" class="section">
+          <h1 class="page-title">Pacientes</h1>
+          <p class="page-subtitle">Pacientes que tienen o han tenido una cita contigo.</p>
+
+          <div class="panel">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Paciente</th>
+                  <th>Teléfono</th>
+                  <th>Citas totales</th>
+                  <th>Última cita</th>
+                  <th>Próxima cita</th>
+                </tr>
+              </thead>
+              <tbody id="tablaPacientes">
+                <tr><td colspan="5" style="text-align:center;color:var(--text-secondary);padding:24px;">Cargando pacientes…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ══ AGENDA COMPLETA ══════════════════════════ -->
+        <section id="agenda" class="section">
+          <h1 class="page-title">Agenda</h1>
+          <p class="page-subtitle">Todas tus citas, pasadas y futuras.</p>
+
+          <div class="panel">
+            <div class="panel-header">
+              <h2>Citas</h2>
+              <div class="panel-header-actions">
+                <select class="filter-select" id="filtroAgendaEstado" onchange="pintarAgendaCompleta()">
+                  <option value="todos">Todos los estados</option>
+                  <option value="pendiente">Pendiente</option>
+                  <option value="confirmada">Confirmado</option>
+                  <option value="completada">Completado</option>
+                  <option value="cancelada">Cancelado</option>
+                </select>
+              </div>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Hora</th>
+                  <th>Paciente</th>
+                  <th>Motivo</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody id="tablaAgenda">
+                <tr><td colspan="5" style="text-align:center;color:var(--text-secondary);padding:24px;">Cargando agenda…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ══ RESULTADOS Y RECETAS ═════════════════════ -->
+        <section id="resultados" class="section">
+          <h1 class="page-title">Resultados y recetas</h1>
+          <p class="page-subtitle">Agrega resultados de laboratorio, informes o recetas a las citas de tus pacientes.</p>
+
+          <div class="panel">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Paciente</th>
+                  <th>Motivo</th>
+                  <th>Resultado / receta</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="tablaResultados">
+                <tr><td colspan="5" style="text-align:center;color:var(--text-secondary);padding:24px;">Cargando citas…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- MODAL AGREGAR RESULTADO / RECETA -->
+  <div class="modal-overlay" id="modalResultado">
+    <div class="modal" style="max-width: 500px; width: 90%;">
+      <h3>Agregar resultados o recetas</h3>
+      <p id="modalResultadoPaciente" style="color:var(--text-secondary);font-size:13px;margin-top:-8px;">—</p>
+
+      <div id="listaElementosAgregados" style="margin-top: 12px; display: flex; flex-direction: column; gap: 8px;">
+        </div>
+
+      <hr style="border: none; border-top: 1px dashed var(--border-color); margin: 16px 0;">
+
+      <div class="form-group">
+        <label>Tipo de registro</label>
+        <select id="modalTipo">
+          <option value="laboratorio">🧪 Resultado de laboratorio</option>
+          <option value="informe">📄 Informe médico</option>
+          <option value="receta">💊 Receta médica</option>
+          <option value="imagen">🫁 Imagen de diagnóstico</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Detalle / Indicaciones</label>
+        <textarea id="modalTexto" rows="3" placeholder="Escribe las indicaciones, medicamentos o resultados aquí..."></textarea>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <button type="button" class="quick-btn secondary" style="width: 100%; border: 1px dashed var(--blue-600); color: var(--blue-600); background: transparent;" onclick="agregarElementoALaLista()">
+          <i class="ti ti-plus"></i> Añadir este elemento a la cita
+        </button>
+      </div>
+
+      <div style="display:flex; gap:12px; justify-content:flex-end; margin-top:16px;">
+        <button class="quick-btn secondary" style="background:var(--surface); color:var(--text-primary);" onclick="cerrarModalResultado()">Cancelar</button>
+        <button class="quick-btn primary" style="background:var(--blue-600); color:#fff;" onclick="guardarTodosLosResultados()">Guardar consulta completa</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

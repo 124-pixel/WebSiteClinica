@@ -14,17 +14,19 @@ const config = {
   options: {
     trustServerCertificate: true,
     port: 1433,
-  }
+  },
+  requestTimeout: 30000,   // ← agrega esta línea
+  connectionTimeout: 300005
 };
 
 const poolPromise = new sql.ConnectionPool(config)
   .connect()
   .then(pool => {
-    console.log('✅ Conectado a SQL Server - clinica_citas');
+    console.log(' Conectado a SQL Server - clinica_citas');
     return pool;
   })
   .catch(err => {
-    console.error('❌ Error de conexión:', err.message);
+    console.error(' Error de conexión:', err.message);
     process.exit(1);
   });
 

@@ -6,13 +6,14 @@
 const jwt        = require('jsonwebtoken');
 const UsuarioDAO = require('../dao/UsuarioDAO');
 const UsuarioDTO = require('../models/UsuarioDTO');
+const MedicoDAO  = require('../dao/Medicodao');
 
 const SECRET     = 'clinica_secret_2024';
 const TOKEN_EXP  = '8h';
 
 class AuthService {
 
-  // Login de usuario
+  // Login de usuario (paciente / administrador)
   async login(correo, contrasena) {
 
     // 1. Buscar usuario en la BD
@@ -52,6 +53,45 @@ class AuthService {
     );
 
     return { token, usuario: usuarioDTO };
+  }
+
+  // Login de médico
+  async loginMedico(correo, contrasena) {
+
+    // 1. Buscar médico en la BD
+    const medico = await MedicoDAO.findByCorreo(correo);
+    if (!medico) {
+      throw { status: 401, message: 'Correo o contraseña incorrectos.' };
+    }
+
+    // 2. Verificar estado
+    if (medico.estado && medico.estado.toLowerCase() !== 'activo') {
+      throw { status: 403, message: 'Tu cuenta está inactiva. Contacta al administrador.' };
+    }
+
+    // 3. Verificar contraseña (texto plano por ahora)
+    if (contrasena !== medico.contrasena) {
+      throw { status: 401, message: 'Correo o contraseña incorrectos.' };
+    }
+
+    // 4. Datos del médico sin la contraseña
+    const medicoData = {
+      id:            medico.id,
+      nombre:        `${medico.nombre} ${medico.apellido}`.trim(),
+      correo:        medico.correo,
+      especialidad:  medico.especialidad,
+      id_sede:       medico.id_sede,
+      rol:           'medico',
+    };
+
+    // 5. Generar token JWT
+    const token = jwt.sign(
+      { id: medicoData.id, nombre: medicoData.nombre, rol: 'medico' },
+      SECRET,
+      { expiresIn: TOKEN_EXP }
+    );
+
+    return { token, usuario: medicoData };
   }
 
   // Verificar token

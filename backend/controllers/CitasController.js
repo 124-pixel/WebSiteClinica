@@ -69,7 +69,7 @@ class CitaController {
   async getCitasHoy(req, res) {
     try {
       const citas = await CitaDAO.getCitasHoy();
-      res.json({ ok: true, citas });
+      res.json({ ok: true, citas, total: citas.length });
     } catch (err) {
       console.error(err);
       res.status(500).json({ ok: false, mensaje: 'Error al obtener citas' });
@@ -88,6 +88,39 @@ class CitaController {
     }
   }
 
+  // GET /api/citas/medico/:id
+  async getCitasMedico(req, res) {
+    try {
+      const { id } = req.params;
+      const citas = await CitaDAO.getCitasByMedico(parseInt(id));
+      res.json({ ok: true, citas });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ ok: false, mensaje: 'Error al obtener citas del médico' });
+    }
+  }
+
+  // PATCH /api/citas/:id/resultado
+  // PATCH /api/citas/:id/resultado (¡ACTUALIZADO!)
+async updateResultado(req, res) {
+  try {
+    const { id } = req.params;
+    const { resultado, resultado_tipo } = req.body;
+    
+    // Validamos que venga el contenido, independientemente de que sea un string o un JSON stringificado
+    if (!resultado || !resultado_tipo) {
+      return res.status(400).json({ ok: false, mensaje: 'Faltan datos del resultado' });
+    }
+    
+    // Mandamos el string completo (que contendrá el JSON con el listado) al DAO
+    await CitaDAO.updateResultado(parseInt(id), resultado, resultado_tipo);
+    res.json({ ok: true, mensaje: 'Resultados y recetas guardados correctamente' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ ok: false, mensaje: 'Error al guardar el resultado' });
+  }
+}
+
   // PATCH /api/citas/:id/estado
   async updateEstado(req, res) {
     try {
@@ -98,6 +131,17 @@ class CitaController {
     } catch (err) {
       console.error(err);
       res.status(500).json({ ok: false, mensaje: 'Error al actualizar estado' });
+    }
+  }
+
+  // GET /api/citas/todas
+  async getCitasTodas(req, res) {
+    try {
+      const citas = await CitaDAO.getCitasTodas();
+      res.json({ ok: true, citas });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ ok: false, mensaje: 'Error al obtener todas las citas' });
     }
   }
 }

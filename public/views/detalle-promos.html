@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promociones Médicas</title>
+     
+     <link rel="stylesheet" href="../../public/assets/design/navbar.css">
+     <link rel="stylesheet" href="../../public/assets/design/stylefooter.css">
+     <script src="../../public/assets/engine/navbar.js" defer></script>
+<script src="../../public/assets/engine/footer.js" defer></script>
+     <script src="../assets/engine/detalle-promos.js"></script>
+    <style>
+        * {
+    box-sizing: border-box;
+    /* Evita que el padding rompa el ancho */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+        :root {
+            --primary-blue: #0046e4;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --border-color: #cbd5e1;
+            --bg-body: #f8fafc;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+        }
+
+
+
+/* ── BARRA DE NAVEGACIÓN (Espacio Reservado) ── */
+.navbar-placeholder {
+    width: 100%;
+    height: 70px; /* Ajusta según tu navbar real */
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+    font-weight: bold;
+}
+
+/* ── CONTENEDOR PRINCIPAL RESPONSIVE ── */
+.main-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 90px auto;
+    padding: 20px 16px; /* Márgenes cómodos en móviles */
+}
+
+/* Migas de pan (Breadcrumbs) */
+.breadcrumbs {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 24px;
+    line-height: 1.4;
+}
+.breadcrumbs span { 
+    color: var(--text-dark); 
+    font-weight: 600; 
+}
+
+/* ── DISEÑO GRID (Mobile-First) ── */
+/* Por defecto en celulares: todo en una sola columna */
+.promo-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+}
+
+/* ── COLUMNA IZQUIERDA: INFORMACIÓN ── */
+.promo-info-side {
+    width: 100%;
+}
+
+.promo-info-side img {
+    width: 100%;
+    height: auto;
+    max-height: 340px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.promo-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text-dark);
+    line-height: 1.2;
+}
+
+.promo-description {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-light);
+    margin-bottom: 20px;
+}
+
+.promo-benefits {
+    list-style: none;
+    margin-bottom: 24px;
+}
+
+.promo-benefits li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 12px;
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--text-dark);
+}
+
+.promo-benefits li::before {
+    content: "•";
+    color: var(--primary-blue);
+    font-weight: bold;
+    font-size: 20px;
+    position: absolute;
+    left: 0;
+    top: -2px;
+}
+
+.price-box {
+    margin-top: 24px;
+    font-size: 13px;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.price-amount {
+    display: block;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-top: 2px;
+}
+
+.terms-link {
+    display: inline-block;
+    margin-top: 16px;
+    color: var(--text-light);
+    font-size: 13px;
+    text-decoration: underline;
+}
+
+/* ── COLUMNA DERECHA: FORMULARIO ── */
+.form-side {
+    width: 100%;
+}
+
+.form-side h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text-dark);
+    line-height: 1.3;
+}
+
+/* Grid interna del Formulario (Inputs) */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Una sola fila por input en móvil */
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 13.5px;
+    font-weight: 600;
+}
+
+.form-group label span {
+    color: #ef4444; /* Rojo de advertencia moderno */
+    margin-left: 2px;
+}
+
+/* Inputs de texto estándar */
+.form-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 14.5px;
+    outline: none;
+    background: #ffffff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(0, 70, 228, 0.1);
+}
+
+/* Selector compuesto (DNI + Número) */
+.input-wrapper {
+    display: flex;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: #ffffff;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-wrapper select {
+    border: none;
+    padding: 0 12px;
+    background: #f8fafc;
+    font-size: 14px;
+    outline: none;
+    border-right: 1px solid var(--border-color);
+    cursor: pointer;
+    color: var(--text-dark);
+}
+
+.input-wrapper input {
+    border: none;
+    border-radius: 0;
+}
+
+.input-wrapper:focus-within {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(0, 70, 228, 0.1);
+}
+
+/* Checkboxes y Textos legales */
+.checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--text-dark);
+    line-height: 1.4;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.checkbox-group a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.checkbox-group a:hover {
+    text-decoration: underline;
+}
+
+/* Botón de envío */
+.submit-btn {
+    width: 100%; /* Botón completo en pantallas móviles para facilitar el clic */
+    background-color: var(--primary-blue);
+    color: #ffffff;
+    border: none;
+    padding: 14px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 24px;
+    transition: background-color 0.2s, transform 0.1s;
+    text-align: center;
+}
+
+.submit-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+.submit-btn:active {
+    transform: scale(0.98);
+}
+
+
+/* ── MEDIA QUERIES (Pantallas medianas y grandes) ── */
+
+/* Tablets y pantallas intermedias (en adelante) */
+@media (min-width: 768px) {
+    .main-container {
+        padding: 30px 24px;
+    }
+    
+    .promo-title {
+        font-size: 28px;
+    }
+
+    /* El formulario se distribuye en dos columnas internas */
+    .form-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .full-width {
+        grid-column: span 2;
+    }
+
+    .submit-btn {
+        width: auto; /* El botón recupera su tamaño original en pantallas grandes */
+        padding: 14px 48px;
+    }
+}
+
+/* Escritorio (Monitores y Laptops) */
+@media (min-width: 992px) {
+    .promo-layout {
+        /* Se activa el diseño de dos columnas principales tal cual la imagen */
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 60px;
+    }
+
+    .promo-info-side img {
+        max-height: none; /* Permite que la imagen mantenga su proporción original */
+    }
+}
+    </style>
+</head>
+<body>
+
+        <div id="navbar-container"></div>
+
+    <main class="main-container">
+        <div class="breadcrumbs" id="breadcrumbs">
+            Inicio &gt; Promociones &gt; <span id="current-breadcrumb">...</span>
+        </div>
+
+        <div class="promo-layout">
+            
+            <section class="promo-info-side">
+                <img id="promo-img" src="" alt="Banner Promoción">
+                <h1 class="promo-title" id="promo-title">Cargando...</h1>
+                <p class="promo-description" id="promo-desc"></p>
+                
+                <ul class="promo-benefits" id="promo-benefits">
+                    </ul>
+
+                <div class="price-box">
+                    Inversión
+                    <span class="price-amount" id="promo-price">...</span>
+                </div>
+
+                <a href="#" class="terms-link">Aplican Términos y Condiciones</a>
+            </section>
+
+            <section class="form-side">
+                <h2>Completa el formulario y accede a la promoción</h2>
+                
+                <form id="promo-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Nombre y Apellido<span>*</span></label>
+                            <input type="text" placeholder="Escribe aquí" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Documento de identidad<span>*</span></label>
+                            <div class="input-wrapper">
+                                <select id="doc-type">
+                                    <option value="DNI">DNI</option>
+                                    <option value="CE">C.E.</option>
+                                    <option value="Pasaporte">Pasaporte</option>
+                                </select>
+                                <input type="text" placeholder="Nro. de documento" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Edad<span>*</span></label>
+                            <input type="number" placeholder="Escribe aquí tu edad" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Número de contacto<span>*</span></label>
+                            <input type="tel" placeholder="Número de celular" required>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label>Correo electrónico<span>*</span></label>
+                            <input type="email" placeholder="Escribe aquí tu correo" required>
+                        </div>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="privacy" required>
+                        <label Kneido para="privacy">He leído y acepto de manera expresa la <a href="#">política de privacidad</a>, los <a href="#">términos y condiciones</a> y los <a href="#">términos y condiciones de campañas comerciales</a> *</label>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="consent">
+                        <label for="consent">Acepto el <a href="#">Consentimiento para usos adicionales.</a></label>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Solicitar</button>
+                </form>
+            </section>
+
+        </div>
+        
+    </main>
+
+    
+     <div class="footer-border">
+    </div>
+
+    <div id="footer-container"></div>
+
+        
+</body>
+</html>

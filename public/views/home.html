@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clinica Internacional</title>
     <link rel="stylesheet" href="../../public/assets/design/style.css">
-<link rel="stylesheet" href="../../public/assets/design/navbar.css">
-<link rel="stylesheet" href="../../public/assets/design/stylefooter.css">
-<script src="../../public/assets/engine/scrip.js" defer></script>
-<script src="../../public/assets/engine/navbar.js" defer></script>
-<script src="../../public/assets/engine/footer.js" defer></script>
+    <link rel="stylesheet" href="../../public/assets/design/navbar.css">
+    <link rel="stylesheet" href="../../public/assets/design/stylefooter.css">
+    <script src="../../public/assets/engine/scrip.js" defer></script>
+    <script src="../../public/assets/engine/navbar.js" defer></script>
+    <script src="../../public/assets/engine/footer.js" defer></script>
 </head>
 
 <body>
@@ -29,42 +29,48 @@
 
         <!-- STATS -->
         <div class="hero-stats">
-    <!-- Agendar una cita (Te lleva al Login o citas) -->
-    <a href="Login.html" class="stat-box">
-        <img src="https://clinicainternacional.com.pe/uploads/Group_1000005110_58255c6c67.svg" alt="Icono agendar cita">
-        <h2>Agendar una cita</h2>
-    </a>
+            <!-- Agendar una cita (Te lleva al Login o citas) -->
+            <a href="Login.html" class="stat-box">
+                <img src="https://clinicainternacional.com.pe/uploads/Group_1000005110_58255c6c67.svg"
+                    alt="Icono agendar cita">
+                <h2>Agendar una cita</h2>
+            </a>
 
-    <!-- Ver mis resultados -->
-    <a href="#" class="stat-box">
-        <img src="https://clinicainternacional.com.pe/uploads/Group_1000005106_18c9789549.svg" alt="Icono resultados">
-        <h2>Ver mis resultados</h2>
-    </a>
+            <!-- Ver mis resultados -->
+            <a href="Login.html" class="stat-box">
+                <img src="https://clinicainternacional.com.pe/uploads/Group_1000005106_18c9789549.svg"
+                    alt="Icono resultados">
+                <h2>Ver mis resultados</h2>
+            </a>
 
-    <!-- Buscar un medico -->
-    <a href="Physicians.html" class="stat-box">
-        <img src="https://clinicainternacional.com.pe/uploads/Group_1000005112_3dd2b1f967.svg" alt="Icono buscar médico">
-        <h2>Buscar un médico</h2>
-    </a>
+            <!-- Buscar un medico -->
+            <a href="Physicians.html" class="stat-box">
+                <img src="https://clinicainternacional.com.pe/uploads/Group_1000005112_3dd2b1f967.svg"
+                    alt="Icono buscar médico">
+                <h2>Buscar un médico</h2>
+            </a>
 
-    <!-- Solicitar un servicio -->
-    <a href="#" class="stat-box">
-        <img src="https://clinicainternacional.com.pe/uploads/Group_1000005107_00a0252d31.svg" alt="Icono servicios">
-        <h2>Solicitar un servicio</h2>
-    </a>
+            <!-- Solicitar un servicio -->
+            <a href="Servicios.html" class="stat-box">
+                <img src="https://clinicainternacional.com.pe/uploads/Group_1000005107_00a0252d31.svg"
+                    alt="Icono servicios">
+                <h2>Solicitar un servicio</h2>
+            </a>
 
-    <!-- Conocer las promociones -->
-    <a href="#" class="stat-box">
-        <img src="https://clinicainternacional.com.pe/uploads/Group_1000005108_c94a7594c2.svg" alt="Icono promociones">
-        <h2>Conocer las promociones</h2>
-    </a>
+            <!-- Conocer las promociones -->
+            <a href="promos.html" class="stat-box">
+                <img src="https://clinicainternacional.com.pe/uploads/Group_1000005108_c94a7594c2.svg"
+                    alt="Icono promociones">
+                <h2>Conocer las promociones</h2>
+            </a>
 
-    <!-- Conocer las especialidades -->
-    <a href="especialidades.html" class="stat-box">
-        <img src="https://clinicainternacional.com.pe/uploads/Group_1000005109_ca3d3788a6.svg" alt="Icono especialidades">
-        <h2>Conocer las especialidades</h2>
-    </a>
-</div>
+            <!-- Conocer las especialidades -->
+            <a href="especialidades.html" class="stat-box">
+                <img src="https://clinicainternacional.com.pe/uploads/Group_1000005109_ca3d3788a6.svg"
+                    alt="Icono especialidades">
+                <h2>Conocer las especialidades</h2>
+            </a>
+        </div>
     </section>
 
     <!-- SERVICES SECTION -->
@@ -91,52 +97,86 @@
     </div>
 
     <!-- ESPECIALIDDADES CONTAINER -->
+<div class="seccion-especialidades">
 
-    <div class="seccion-especialidades">
-
-        <div class="encabezado">
-            <h2>Nuestras Especialidades</h2>
-            <nav class="menu-filtros">
-                <button onclick="filtrar('todas')" class="btn-link">Especialidades Médicas</button>
-                <button onclick="filtrar('general')" class="btn-link">Atención General</button>
-                <button onclick="filtrar('quirurgica')" class="btn-link">Quirúrgicas</button>
-            </nav>
-        </div>
-
-        <div class="grid-especialidades">
-            <div class="tarjeta-medica" data-tipo="quirurgica">
-                <img src="https://clinicainternacional.com.pe/uploads/especialidades_oncologia_73ba5faf2a.jpg"
-                    alt="Cirugía">
-                <div class="contenido">
-                    <h3>Cirugía de Tórax</h3>
-                    <p>Tratamiento quirúrgico de enfermedades del tórax y pulmones.</p>
-                    <button class="btn-conoce">Conoce más</button>
-                </div>
-            </div>
-
-            <div class="tarjeta-medica" data-tipo="general">
-                <img src="https://clinicainternacional.com.pe/uploads/especialidades_cardiologia_ee8b9ac796.jpg"
-                    alt="General">
-                <div class="contenido">
-                    <h3>Atención General</h3>
-                    <p>Diagnóstico integral y tratamiento preventivo para adultos.</p>
-                    <button class="btn-conoce">Conoce más</button>
-                </div>
-            </div>
-
-            <div class="tarjeta-medica" data-tipo="general">
-                <img src="https://clinicainternacional.com.pe/uploads/ORTOPEDIA_Y_TRAUMATOLOGIA_70dfe2fbd0.webp"
-                    alt="General">
-                <div class="contenido">
-                    <h3>Atención General</h3>
-                    <p>Diagnóstico integral y tratamiento preventivo para adultos.</p>
-                    <button class="btn-conoce">Conoce más</button>
-                </div>
-            </div>
-
-
-        </div>
+    <div class="encabezado">
+        <h2>Nuestras Especialidades</h2>
+        <nav class="menu-filtros">
+            <button onclick="filtrar('medica')" class="btn-link">Especialidades Médicas</button>
+            <button onclick="filtrar('general')" class="btn-link">Atención General</button>
+            <button onclick="filtrar('quirurgica')" class="btn-link">Quirúrgicas</button>
+        </nav>
     </div>
+
+    <div class="grid-especialidades">
+        
+        <div class="tarjeta-medica" data-tipo="medica">
+            <img src="../assets/imgHome/especialidades_cardiologia_ee8b9ac796.jpg" alt="Cardiología">
+            <div class="contenido">
+                <h3>Cardiología</h3>
+                <p>Cuidado del corazón y sistema circulatorio.</p>
+               <a href="detalle-especialidad.html?especialidad=Cardiología" class="btn-conoce">Conoce más</a>
+            </div>
+        </div>
+
+        <div class="tarjeta-medica" data-tipo="medica">
+            <img src="../assets/imgHome/DERMATOLOGIA_1_9cd2c71409.webp" alt="Dermatología">
+            <div class="contenido">
+                <h3>Dermatología</h3>
+                <p>Diagnóstico y tratamiento de enfermedades de la piel.</p>
+                <a href="detalle-especialidad.html?especialidad=Dermatología" class="btn-conoce">Conoce más</a>
+            </div>
+        </div>
+
+        <div class="tarjeta-medica" data-tipo="medica">
+            <img src="../assets/imgHome/especialidades_oncologia_73ba5faf2a.jpg" alt="Neurología">
+            <div class="contenido">
+                <h3>Neurología</h3>
+                <p>Atención de enfermedades del sistema nervioso.</p>
+                <a href="detalle-especialidad.html?especialidad=Neurología" class="btn-conoce">Conoce más</a>
+            </div>
+        </div>
+
+
+        <div class="tarjeta-medica" data-tipo="general">
+            <img src="../assets/imgHome/PEDIATRIA_23443904a1.webp" alt="Pediatría">
+            <div class="contenido">
+                <h3>Pediatría</h3>
+                <p>Atención médica para niños y adolescentes.</p>
+                <a href="detalle-especialidad.html?especialidad=Pediatría" class="btn-conoce">Conoce más</a>
+            </div>
+        </div>
+
+        <div class="tarjeta-medica" data-tipo="general">
+            <img src="../assets/imgHome/atencion_general_medicinafamiliar_5dca7b16dc.jpg" alt="Medicina General">
+            <div class="contenido">
+                <h3>Medicina General</h3>
+                <p>Consulta médica primaria y diagnóstico integral.</p>
+                <a href="detalle-especialidad.html?especialidad=Medicina General" class="btn-conoce">Conoce más</a>
+            </div>
+        </div>
+
+
+        <div class="tarjeta-medica" data-tipo="quirurgica">
+            <img src="../assets/imgHome/ORTOPEDIA_Y_TRAUMATOLOGIA_70dfe2fbd0.webp" alt="Traumatología">
+            <div class="contenido">
+                <h3>Traumatología</h3>
+                <p>Diagnóstico y tratamiento del aparato locomotor.</p>
+                <a href="detalle-especialidad.html?especialidad=Traumatología" class="btn-conoce">Conoce más</a>
+            </div>
+        </div>
+
+        <div class="tarjeta-medica" data-tipo="quirurgica">
+            <img src="../assets/imgHome/oftalmologia.webp" alt="Oftalmología">
+            <div class="contenido">
+                <h3>Oftalmología</h3>
+                <p>Atención de enfermedades y cuidado de los ojos.</p>
+                <a href="detalle-especialidad.html?especialidad=Oftalmología" class="btn-conoce">Conoce más</a>
+            </div>
+        </div>
+
+    </div>
+</div>
 
     <section class="election">
         <div class="election-content">
@@ -399,7 +439,8 @@
 
     <div class="footer-border">
     </div>
-    
+
     <div id="footer-container"></div>
 </body>
+
 </html>

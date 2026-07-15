@@ -3,7 +3,7 @@
  * Responsable de todas las consultas SQL
  * relacionadas con la tabla dbo.usuarios
  */
-const { sql, poolPromise } = require('../config/Db');
+const { sql, poolPromise } = require('../config/db');
 const UsuarioDTO = require('../models/UsuarioDTO');
 
 class UsuarioDAO {
@@ -73,6 +73,25 @@ class UsuarioDAO {
     return result.recordset[0].id;
   }
 
+  // Crear nuevo paciente desde el panel de administración
+  async createPaciente({ nombre, apellido, dni, correo, contrasena, telefono }) {
+    const pool = await poolPromise;
+    const result = await pool.request()
+      .input('nombre',     sql.VarChar, nombre)
+      .input('apellido',   sql.VarChar, apellido)
+      .input('dni',        sql.VarChar, dni)
+      .input('correo',     sql.VarChar, correo)
+      .input('contrasena', sql.VarChar, contrasena)
+      .input('telefono',   sql.VarChar, telefono || null)
+      .input('id_rol',     sql.Int,     2) // <-- Fijo 2 porque tu BD dice que 2 = Paciente
+      .query(`
+        INSERT INTO dbo.usuarios (nombre, apellido, dni, correo, contrasena, telefono, id_rol, estado, fecha_registro)
+        OUTPUT INSERTED.id
+        VALUES (@nombre, @apellido, @dni, @correo, @contrasena, @telefono, @id_rol, 'Activo', GETDATE())
+      `);
+    return result.recordset[0].id;
+  }
+
   // Actualizar usuario
   async update(id, { nombre, telefono, estado }) {
     const pool = await poolPromise;
@@ -95,6 +114,33 @@ class UsuarioDAO {
       .input('id', sql.Int, id)
       .query('DELETE FROM dbo.usuarios WHERE id = @id');
   }
+
+  // Agrega esto dentro de tu UsuarioDAO.js
+
+async getPacientes() {
+  try {
+    // Importamos la conexión desde tu Db.js
+    const { sql, poolPromise } = require('../config/Db');
+    const pool = await poolPromise;
+
+    // Hacemos la consulta SQL cruzando con roles para asegurarnos de traer solo PACIENTES
+    // Nota: Si en tu tabla el id_rol de paciente es un número fijo (ej. 1 o 2), puedes usarlo directamente.
+    // Aquí lo cruzamos con la tabla roles por nombre_rol = 'paciente' para asegurar.
+    const result = await pool.request().query(`
+      SELECT u.id, u.nombre, u.apellido, u.dni, u.correo, u.telefono, u.estado, u.fecha_registro
+      FROM dbo.usuarios u
+      INNER JOIN dbo.roles r ON u.id_rol = r.id
+      WHERE r.nombre_rol = 'paciente' OR u.id_rol = 2 
+      ORDER BY u.nombre ASC
+    `);
+
+    // Retornamos las filas obtenidas
+    return result.recordset;
+  } catch (err) {
+    console.error('Error en UsuarioDAO.getPacientes:', err.message);
+    throw err;
+  }
+}
 }
 
 module.exports = new UsuarioDAO();

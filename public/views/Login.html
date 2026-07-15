@@ -13,7 +13,7 @@
 
 <body>
 
-   <div class="form-rigth">
+  <div class="form-rigth">
     <div class="right-cross"></div>
     <div class="right-content">
       <span class="right-tag">Clínica Internacional</span>
@@ -21,27 +21,27 @@
       <div class="right-line"></div>
     </div>
   </div>
- 
+
   <div class="form-left">
- 
+
     <div class="form">
       <div class="title-form">
         <h2>Bienvenidos</h2>
         <p>Ingrese sus credenciales</p>
         <div class="tile-lie"></div>
       </div>
- 
+
       <label>CORREO ELECTRÓNICO</label>
       <input type="email" id="correo" placeholder="Correo@gmail.com" autocomplete="email" />
     </div>
- 
+
     <div class="form">
       <label>CONTRASEÑA</label>
       <input type="password" id="contrasena" placeholder="contraseña" autocomplete="current-password" />
     </div>
- 
+
     <p class="error-msg" id="errorMsg"></p>
- 
+
     <div class="form-option">
       <label class="remenber">
         <input type="checkbox" id="recordar">
@@ -49,83 +49,17 @@
       </label>
       <a href="#">¿Olvidaste tu contraseña?</a>
     </div>
- 
+
     <button class="btn-login" id="btnLogin" onclick="login()">Iniciar sesión</button>
- 
+
     <div class="form-acceso">
       <p>¿Necesita acceso?</p>
       <a href="#">Contacte a administración</a>
     </div>
- 
+
   </div>
 
- <script>
-    document.getElementById('contrasena').addEventListener('keydown', e => {
-      if (e.key === 'Enter') login();
-    });
- 
-    async function login() {
-      const correo     = document.getElementById('correo').value.trim();
-      const contrasena = document.getElementById('contrasena').value;
-      const recordar   = document.getElementById('recordar').checked;
-      const btn        = document.getElementById('btnLogin');
-      const errorMsg   = document.getElementById('errorMsg');
- 
-      errorMsg.classList.remove('show');
- 
-      if (!correo || !contrasena) {
-        mostrarError('Por favor completa todos los campos.');
-        return;
-      }
- 
-      btn.disabled = true;
-      btn.textContent = 'Ingresando...';
- 
-      try {
-        const res = await fetch('http://localhost:3000/api/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ correo, contrasena })
-        });
- 
-        const data = await res.json();
-        console.log(data);
-console.log(data.usuario);
- 
-        if (!res.ok) {
-          mostrarError(data.error || 'Error al iniciar sesión.');
-          return;
-        }
- 
-        // Guarda token y datos del usuario
-        const storage = recordar ? localStorage : sessionStorage;
-        storage.setItem('token', data.token);
-        storage.setItem('usuario', JSON.stringify(data.usuario));
- 
-        // Redirige según el rol exacto de la BD
-        const rol = data.usuario.rol;
-        if (rol === 'Administrador') {
-  window.location.href = '../admin/homeAdmin.html';
-} else if (rol === 'Paciente') {
-  window.location.href = '../usuario/homeUsuario.html';
-} else {
-          mostrarError('Rol no reconocido. Contacte a administración.');
-        }
- 
-      } catch (err) {
-        mostrarError('No se pudo conectar con el servidor.');
-      } finally {
-        btn.disabled = false;
-        btn.textContent = 'Iniciar sesión';
-      }
-    }
- 
-    function mostrarError(msg) {
-      const errorMsg = document.getElementById('errorMsg');
-      errorMsg.textContent = msg;
-      errorMsg.classList.add('show');
-    }
-  </script>
+  <script src="../../public/assets/engine/login.js"></script>
 
 
 </body>

@@ -1,6 +1,3 @@
-/*Scrip carrusel section*/
-
-// Esperar a que el DOM esté cargado
 document.addEventListener('DOMContentLoaded', () => {
     let currentIndex = 0;
     const slides = document.querySelectorAll('.slide');
@@ -35,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-/*service section*/
 const datos = [
     {
       titulo: "Tu atención médica del domingo puede sorprenderte",
@@ -97,23 +93,24 @@ let index = 0;
 
    /*especialidades js*/
 
-  function filtrar(categoria){
+function filtrar(categoria){
     const tarjetas = document.querySelectorAll('.tarjeta-medica');
+    
     tarjetas.forEach(tarjeta => {
-
         const tipo = tarjeta.getAttribute('data-tipo');
+        
         if(categoria === 'todas' || tipo === categoria){
-
             tarjeta.style.display = "block";
-        }else{
+        } else {
             tarjeta.style.display = "none";
         }
+    });   
+}
 
-            
-        
-    });        
-    
-  }
+// EJECUCIÓN AL REFRESCAR: Arranca mostrando solo la categoría 'medica'
+window.addEventListener('DOMContentLoaded', () => {
+    filtrar('medica');
+});
 
 
   /*election js*/

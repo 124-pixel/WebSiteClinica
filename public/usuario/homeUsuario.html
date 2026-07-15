@@ -2,456 +2,312 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dashboard Paciente | Clínica Internacional</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Portal — Clínica Internacional</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/design/styleHomeusuario.css">
-  <script src="../assets/engine/homeUsuario.js" defer></script>
+
 </head>
 <body>
 
-<!-- TOPBAR -->
-<nav class="topbar">
-  <div class="logo">
-    Clínica Internacional
-  </div>
-<div class="topbar-right">
-  <a href="../views/Login.html" class="btn-logout" onclick="localStorage.clear();sessionStorage.clear();">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
-      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-      <polyline points="16 17 21 12 16 7"/>
-      <line x1="21" y1="12" x2="9" y2="12"/>
-    </svg>
-    Cerrar sesión
-  </a>
-  <div class="user-chip">
-    <div class="avatar">JM</div>
-    <span class="user-name">Juan Mamani</span>
-  </div>
-</div>
-</nav>
-
-<!-- LAYOUT -->
-<div class="layout">
-
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <span class="sidebar-label">Principal</span>
-    <button class="nav-item active" onclick="showSection('inicio')">
-      <span class="nav-icon"></span> Inicio
-    </button>
-    <button class="nav-item" onclick="showSection('agendar')">
-      <span class="nav-icon"></span> Agendar cita
-    </button>
-    <button class="nav-item" onclick="showSection('mis-citas')">
-      <span class="nav-icon"></span> Mis citas
-    </button>
-    <button class="nav-item" onclick="showSection('resultados')">
-      <span class="nav-icon"></span> Resultados
-    </button>
-
-    <span class="sidebar-label" style="margin-top:8px">Cuenta</span>
-    <button class="nav-item" onclick="showSection('perfil')">
-      <span class="nav-icon"></span> Mi perfil
-    </button>
-  </aside>
-
-  <!-- MAIN CONTENT -->
-  <main class="main">
-
-    <!-- ══ INICIO ══════════════════════════════════════ -->
-    <section id="inicio" class="section active">
-
-      <p class="page-title">hola juan</p>
-      <p class="page-sub">¿Qué necesitas hacer hoy?</p>
-
-      <!-- Próxima cita -->
-      <div class="next-appointment">
-        <div class="next-date-box">
-          <div class="next-day">14</div>
-          <div class="next-month">Jun</div>
-        </div>
-        <div class="next-info">
-          <div class="next-title">Consulta — Cardiología</div>
-          <div class="next-detail">Dr. Carlos Mendoza &nbsp;·&nbsp; 10:30 am &nbsp;·&nbsp; Sede Lima Centro</div>
-          <span class="next-badge">✓ Confirmada</span>
-        </div>
-        <button class="btn-white" onclick="showSection('mis-citas')">Ver detalle</button>
-      </div>
-
-      <!-- Stats -->
-      <div class="cards-grid">
-        <div class="stat-card">
-          <div class="stat-icon blue">📅</div>
-          <div>
-            <div class="stat-number">3</div>
-            <div class="stat-label">Citas este mes</div>
-          </div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon green">✅</div>
-          <div>
-            <div class="stat-number">12</div>
-            <div class="stat-label">Atenciones totales</div>
-          </div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon orange">🔬</div>
-          <div>
-            <div class="stat-number">5</div>
-            <div class="stat-label">Resultados disponibles</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Acceso rápido -->
-      <p style="font-size:.9rem;font-weight:700;color:var(--blue-dark);margin-bottom:14px;">Acceso rápido</p>
-      <div class="quick-grid">
-        <div class="quick-card" onclick="showSection('agendar')">
-          <div class="quick-icon">📆</div>
-          <div class="quick-label">Agendar una cita</div>
-        </div>
-        <div class="quick-card" onclick="showSection('resultados')">
-          <div class="quick-icon">🧪</div>
-          <div class="quick-label">Ver resultados</div>
-        </div>
-        <div class="quick-card" onclick="showSection('mis-citas')">
-          <div class="quick-icon">📋</div>
-          <div class="quick-label">Mis citas</div>
-        </div>
-        <div class="quick-card" onclick="showSection('perfil')">
-          <div class="quick-icon">👤</div>
-          <div class="quick-label">Mi perfil</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══ AGENDAR CITA ════════════════════════════════ -->
-    <section id="agendar" class="section">
-      <p class="page-title">Agendar cita</p>
-      <p class="page-sub">Sigue los pasos para reservar tu consulta médica.</p>
-
-      <!-- Steps -->
-      <div class="steps">
-        <div class="step active" id="step1-ind"><div class="step-num">1</div> Especialidad y médico</div>
-        <div class="step-line" id="line-1-2"></div>
-        <div class="step" id="step2-ind"><div class="step-num">2</div> Fecha y hora</div>
-        <div class="step-line" id="line-2-3"></div>
-        <div class="step" id="step3-ind"><div class="step-num">3</div> Confirmar</div>
-      </div>
-
-      <!-- STEP 1 -->
-      <div id="step1">
-        <div class="form-card">
-          <h3>🏥 Selecciona la especialidad</h3>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Especialidad *</label>
-              <select id="especialidad" onchange="cargarDoctores()">
-  <option value="">— Seleccionar —</option>
-</select>
-            </div>
-            <div class="form-group">
-              <label>Tipo de consulta *</label>
-              <select id="tipo-consulta">
-                <option value="primera">Primera vez</option>
-                <option value="control">Control / Seguimiento</option>
-                <option value="urgencia">Urgencia</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <!-- Médicos -->
-        <div class="form-card" id="doctors-section" style="display:none;">
-          <h3>👨‍⚕️ Selecciona tu médico</h3>
-          <div class="doctor-cards" id="doctor-list"></div>
-        </div>
-
-        <div style="display:flex;justify-content:flex-end;margin-top:16px;">
-          <button class="btn-primary" onclick="irStep2()">Continuar →</button>
-        </div>
-      </div>
-
-      <!-- STEP 2 -->
-      <div id="step2" style="display:none;">
-        <div class="form-card">
-          <h3>📅 Elige la fecha y hora</h3>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Fecha *</label>
-              <input type="date" id="fecha-cita" min="" />
-            </div>
-            <div class="form-group">
-              <label>Sede</label>
-              <select id="sede">
-                <option value="lima-centro">Lima Centro</option>
-                <option value="miraflores">Miraflores</option>
-                <option value="san-borja">San Borja</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-card">
-          <h3>⏰ Horarios disponibles</h3>
-          <div class="horarios-grid" id="horarios-grid"></div>
-        </div>
-
-        <div class="btn-row">
-          <button class="btn-secondary" onclick="irStep1()">← Volver</button>
-          <button class="btn-primary" onclick="irStep3()">Continuar →</button>
-        </div>
-      </div>
-
-      <!-- STEP 3 -->
-      <div id="step3" style="display:none;">
-        <div class="form-card">
-          <h3>📝 Resumen de tu cita</h3>
-          <div class="modal-info" style="margin-bottom:0;">
-            <p><strong>Especialidad:</strong> <span id="res-esp">—</span></p>
-            <p><strong>Médico:</strong> <span id="res-doc">—</span></p>
-            <p><strong>Fecha:</strong> <span id="res-fecha">—</span></p>
-            <p><strong>Hora:</strong> <span id="res-hora">—</span></p>
-            <p><strong>Sede:</strong> <span id="res-sede">—</span></p>
-            <p><strong>Tipo:</strong> <span id="res-tipo">—</span></p>
-          </div>
-        </div>
-
-        <div class="form-card">
-          <h3>💬 Motivo de consulta (opcional)</h3>
-          <div class="form-group">
-            <textarea id="motivo" rows="3"
-              style="padding:10px 14px;border-radius:8px;border:1.5px solid var(--gray-border);
-                     font-size:.9rem;resize:vertical;outline:none;font-family:inherit;"
-              placeholder="Describe brevemente tu motivo de consulta..."></textarea>
-          </div>
-        </div>
-
-        <div class="btn-row">
-          <button class="btn-secondary" onclick="irStep2Desde3()">← Volver</button>
-          <button class="btn-primary" onclick="confirmarCita()">✓ Confirmar cita</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══ MIS CITAS ═══════════════════════════════════ -->
-    <section id="mis-citas" class="section">
-      <p class="page-title">Mis citas</p>
-      <p class="page-sub">Historial y próximas consultas programadas.</p>
-
-      <div class="table-card">
-        <div class="table-header">
-          <h3>Próximas citas</h3>
-          <button class="btn-primary" style="padding:8px 18px;font-size:.85rem;"
-            onclick="showSection('agendar')">+ Nueva cita</button>
-        </div>
-        <table>
-          <thead>
-            <tr>
-              <th>Fecha</th>
-              <th>Especialidad</th>
-              <th>Médico</th>
-              <th>Sede</th>
-              <th>Estado</th>
-              <th>Acción</th>
-            </tr>
-          </thead>
-          <tbody id="tabla-citas">
-            <tr>
-              <td>14 Jun 2025 · 10:30</td>
-              <td>Cardiología</td>
-              <td>Dr. Carlos Mendoza</td>
-              <td>Lima Centro</td>
-              <td><span class="badge confirmada">Confirmada</span></td>
-              <td><button class="btn-sm outline">Ver</button></td>
-            </tr>
-            <tr>
-              <td>22 Jun 2025 · 15:00</td>
-              <td>Dermatología</td>
-              <td>Dra. Paola Ríos</td>
-              <td>Miraflores</td>
-              <td><span class="badge pendiente">Pendiente</span></td>
-              <td><button class="btn-sm outline">Ver</button></td>
-            </tr>
-            <tr>
-              <td>05 May 2025 · 09:00</td>
-              <td>Neurología</td>
-              <td>Dr. Andrés Paredes</td>
-              <td>San Borja</td>
-              <td><span class="badge completada">Completada</span></td>
-              <td><button class="btn-sm primary">Resultado</button></td>
-            </tr>
-            <tr>
-              <td>18 Mar 2025 · 11:00</td>
-              <td>Pediatría</td>
-              <td>Dra. Lucía Torres</td>
-              <td>Lima Centro</td>
-              <td><span class="badge completada">Completada</span></td>
-              <td><button class="btn-sm primary">Resultado</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- ══ RESULTADOS ══════════════════════════════════ -->
-    <section id="resultados" class="section">
-      <p class="page-title">Mis resultados</p>
-      <p class="page-sub">Informes médicos, exámenes de laboratorio, imágenes y recetas de tus atenciones.</p>
-
-      <!-- Filtro tipo -->
-      <div style="display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap;">
-        <button class="hora-btn selected" onclick="filtrarResultados(this,'todos')">Todos</button>
-        <button class="hora-btn" onclick="filtrarResultados(this,'laboratorio')">🧪 Laboratorio</button>
-        <button class="hora-btn" onclick="filtrarResultados(this,'informe')">📄 Informes médicos</button>
-        <button class="hora-btn" onclick="filtrarResultados(this,'imagen')">🫁 Imágenes</button>
-        <button class="hora-btn" onclick="filtrarResultados(this,'receta')">💊 Recetas</button>
-      </div>
-
-      <!-- Cards de resultados -->
-      <div id="resultados-list">
-
-        <div class="resultado-card" data-tipo="laboratorio">
-          <div class="resultado-icon">🧪</div>
-          <div class="resultado-info">
-            <div class="resultado-titulo">Hemograma completo</div>
-            <div class="resultado-meta">05 May 2025 &nbsp;·&nbsp; Dr. Andrés Paredes – Neurología &nbsp;·&nbsp; Lima Centro</div>
-            <div class="resultado-detalle">
-              Resultados dentro de rangos normales. Hemoglobina: 14.2 g/dL · Leucocitos: 7,200/µL · Plaquetas: 250,000/µL.
-            </div>
-            <div class="resultado-acciones">
-              <button class="btn-sm primary">⬇ Descargar PDF</button>
-              <button class="btn-sm outline">👁 Ver detalle</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="resultado-card" data-tipo="informe">
-          <div class="resultado-icon">📄</div>
-          <div class="resultado-info">
-            <div class="resultado-titulo">Informe neurológico — Consulta de seguimiento</div>
-            <div class="resultado-meta">05 May 2025 &nbsp;·&nbsp; Dr. Andrés Paredes – Neurología &nbsp;·&nbsp; San Borja</div>
-            <div class="resultado-detalle">
-              Sin hallazgos patológicos. Se recomienda control en 6 meses. Continuar con tratamiento preventivo indicado.
-            </div>
-            <div class="resultado-acciones">
-              <button class="btn-sm primary">⬇ Descargar PDF</button>
-              <button class="btn-sm outline">👁 Ver detalle</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="resultado-card" data-tipo="receta">
-          <div class="resultado-icon">💊</div>
-          <div class="resultado-info">
-            <div class="resultado-titulo">Receta médica — Atorvastatina 20mg</div>
-            <div class="resultado-meta">14 Mar 2025 &nbsp;·&nbsp; Dr. Carlos Mendoza – Cardiología &nbsp;·&nbsp; Lima Centro</div>
-            <div class="resultado-detalle">
-              Atorvastatina 20mg — 1 tableta en la noche · 30 días. Losartán 50mg — 1 tableta en la mañana · 30 días.
-            </div>
-            <div class="resultado-acciones">
-              <button class="btn-sm primary">⬇ Descargar PDF</button>
-              <button class="btn-sm outline">👁 Ver detalle</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="resultado-card" data-tipo="imagen">
-          <div class="resultado-icon">🫁</div>
-          <div class="resultado-info">
-            <div class="resultado-titulo">Radiografía de tórax AP</div>
-            <div class="resultado-meta">14 Mar 2025 &nbsp;·&nbsp; Dr. Carlos Mendoza – Cardiología &nbsp;·&nbsp; Lima Centro</div>
-            <div class="resultado-detalle">
-              Sin signos de cardiomegalia. Campos pulmonares libres. Senos costofrénicos permeables.
-            </div>
-            <div class="resultado-acciones">
-              <button class="btn-sm primary">⬇ Descargar imagen</button>
-              <button class="btn-sm outline">👁 Ver en visor</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="resultado-card" data-tipo="laboratorio">
-          <div class="resultado-icon">🧪</div>
-          <div class="resultado-info">
-            <div class="resultado-titulo">Perfil lipídico completo</div>
-            <div class="resultado-meta">18 Mar 2025 &nbsp;·&nbsp; Dra. Lucía Torres – Pediatría &nbsp;·&nbsp; Lima Centro</div>
-            <div class="resultado-detalle">
-              Colesterol total: 198 mg/dL · LDL: 122 mg/dL · HDL: 55 mg/dL · Triglicéridos: 145 mg/dL.
-            </div>
-            <div class="resultado-acciones">
-              <button class="btn-sm primary">⬇ Descargar PDF</button>
-              <button class="btn-sm outline">👁 Ver detalle</button>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ══ PERFIL ═══════════════════════════════════════ -->
-    <section id="perfil" class="section">
-      <p class="page-title">Mi perfil</p>
-      <p class="page-sub">Información personal y preferencias de cuenta.</p>
-
-      <div class="form-card">
-        <h3>👤 Datos personales</h3>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Nombres</label>
-            <input type="text" value="Juan Carlos" />
-          </div>
-          <div class="form-group">
-            <label>Apellidos</label>
-            <input type="text" value="Mamani Quispe" />
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>DNI</label>
-            <input type="text" value="48291034" />
-          </div>
-          <div class="form-group">
-            <label>Fecha de nacimiento</label>
-            <input type="date" value="1990-06-15" />
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Correo electrónico</label>
-            <input type="email" value="juan.mamani@email.com" />
-          </div>
-          <div class="form-group">
-            <label>Teléfono</label>
-            <input type="tel" value="987 654 321" />
-          </div>
-        </div>
-        <div class="btn-row">
-          <button class="btn-primary">Guardar cambios</button>
-        </div>
-      </div>
-    </section>
-
-  </main>
-</div>
-
-<!-- MODAL CONFIRMACIÓN -->
-<div class="modal-overlay" id="modal-confirm">
-  <div class="modal">
-    <h3>¡Cita agendada con éxito!</h3>
-    <p>Tu cita ha sido registrada. Te enviaremos un correo de confirmación con todos los detalles.</p>
-    <div class="modal-info">
-      <p><strong>Especialidad:</strong> <span id="m-esp">—</span></p>
-      <p><strong>Médico:</strong> <span id="m-doc">—</span></p>
-      <p><strong>Fecha y hora:</strong> <span id="m-fecha">—</span></p>
-      <p><strong>Sede:</strong> <span id="m-sede">—</span></p>
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="clinic-name">Clínica Internacional</span>
     </div>
-    <div style="display:flex;gap:12px;justify-content:center;">
-      <button class="btn-primary" onclick="cerrarModal()">Ver mis citas</button>
-      <button class="btn-secondary" onclick="cerrarModal()">Cerrar</button>
+    <div class="topbar-right">
+      <a href="../views/Login.html" class="btn-logout" onclick="localStorage.clear();sessionStorage.clear();">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+          <polyline points="16 17 21 12 16 7"/>
+          <line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+        Cerrar sesión
+      </a>
+      <div class="user-chip">
+        <div class="avatar" id="user-avatar">JU</div>
+        <span class="user-name" id="user-name-top">Juan Pérez</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+
+      <div class="nav-group">
+        <div class="nav-group-label">PRINCIPAL</div>
+        <button class="nav-item active" onclick="showSection('inicio')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          Inicio
+        </button>
+        <button class="nav-item" onclick="showSection('agendar')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Agendar cita
+        </button>
+        <button class="nav-item" onclick="showSection('mis-citas')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          Mis citas
+        </button>
+        <button class="nav-item" onclick="showSection('resultados')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Resultados
+        </button>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-label">CUENTA</div>
+        <button class="nav-item" onclick="showSection('perfil')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Mi perfil
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+      <!-- ══ INICIO ══════════════════════════════════════════════ -->
+      <section id="inicio" class="section active">
+        <div class="page-title" id="saludo-titulo">Hola, Juan 👋</div>
+        <p class="page-sub">¿Qué necesitas hacer hoy?</p>
+
+        <!-- PRÓXIMA CITA -->
+        <div class="proxima-cita-card" id="proxima-cita-banner">
+          <div class="cita-fecha-box" id="banner-fecha-box">
+            <div class="cita-fecha-dia" id="banner-dia">—</div>
+            <div class="cita-fecha-mes" id="banner-mes">—</div>
+          </div>
+          <div class="cita-info">
+            <div class="cita-tipo" id="banner-tipo">Cargando próxima cita...</div>
+            <div class="cita-detalles" id="banner-detalles"></div>
+            <div id="banner-badge"></div>
+          </div>
+          <button class="btn-ver-detalle" onclick="showSection('mis-citas')">Ver detalle</button>
+        </div>
+
+        <!-- STATS -->
+        <div class="stat-cards-row">
+          <div class="stat-card-item">
+            <div class="stat-icon-box blue">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <div>
+              <div class="stat-num" id="stat-citas-mes">—</div>
+              <div class="stat-label">Citas este mes</div>
+            </div>
+          </div>
+          <div class="stat-card-item">
+            <div class="stat-icon-box green">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <div class="stat-num" id="stat-atenciones">—</div>
+              <div class="stat-label">Atenciones totales</div>
+            </div>
+          </div>
+          <div class="stat-card-item">
+            <div class="stat-icon-box yellow">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div>
+              <div class="stat-num" id="stat-resultados">—</div>
+              <div class="stat-label">Resultados disponibles</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACCESO RÁPIDO -->
+        <div class="acceso-rapido-title" style="font-size:14px;font-weight:700;color:#111827;margin-bottom:14px;">Acceso rápido</div>
+        <div class="acceso-grid">
+          <a class="acceso-item" onclick="showSection('agendar')">
+            <div class="acceso-icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="12" y1="14" x2="12" y2="18"/><line x1="10" y1="16" x2="14" y2="16"/></svg>
+            </div>
+            <span class="acceso-label">Agendar una cita</span>
+          </a>
+          <a class="acceso-item" onclick="showSection('resultados')">
+            <div class="acceso-icon">
+              <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <span class="acceso-label">Ver resultados</span>
+          </a>
+          <a class="acceso-item" onclick="showSection('mis-citas')">
+            <div class="acceso-icon">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <span class="acceso-label">Mis citas</span>
+          </a>
+          <a class="acceso-item" onclick="showSection('perfil')">
+            <div class="acceso-icon">
+              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <span class="acceso-label">Mi perfil</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- ══ AGENDAR ═════════════════════════════════════════════ -->
+      <section id="agendar" class="section">
+        <div class="page-title">Agendar cita</div>
+        <p class="page-sub">Selecciona especialidad, médico, fecha y horario.</p>
+
+        <!-- STEP INDICATOR -->
+        <div class="steps-bar">
+          <div class="step-ind active" id="step1-ind">
+            <div class="step-circle">1</div>
+            <span>Especialidad y médico</span>
+          </div>
+          <div class="step-line" id="line-1-2"></div>
+          <div class="step-ind" id="step2-ind">
+            <div class="step-circle">2</div>
+            <span>Fecha y horario</span>
+          </div>
+          <div class="step-line" id="line-2-3"></div>
+          <div class="step-ind" id="step3-ind">
+            <div class="step-circle">3</div>
+            <span>Confirmación</span>
+          </div>
+        </div>
+
+        <!-- STEP 1 -->
+        <div id="step1" class="step-content">
+          <div class="form-card">
+            <label class="form-label">Especialidad</label>
+            <select id="especialidad" class="form-select" onchange="cargarDoctores()">
+              <option value="">— Seleccionar —</option>
+            </select>
+
+            <div id="doctors-section" style="display:none;margin-top:24px;">
+              <label class="form-label">Selecciona un médico</label>
+              <div id="doctor-list" class="doctor-grid"></div>
+            </div>
+
+            <div style="display:flex;gap:12px;margin-top:12px;">
+              <div style="flex:1;">
+                <label class="form-label">Sede</label>
+                <select id="sede" class="form-select">
+                  <option value="Sede Central">Sede Central</option>
+                  <option value="Sede Norte">Sede Norte</option>
+                </select>
+              </div>
+              <div style="flex:1;">
+                <label class="form-label">Tipo de consulta</label>
+                <select id="tipo-consulta" class="form-select">
+                  <option value="Primera vez">Primera vez</option>
+                  <option value="Control / Seguimiento">Control / Seguimiento</option>
+                  <option value="Urgencia">Urgencia</option>
+                </select>
+              </div>
+            </div>
+
+            <button class="btn-primary" onclick="irStep2()" style="margin-top:24px;">
+              Siguiente →
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div id="step2" class="step-content" style="display:none;">
+          <div class="form-card">
+            <label class="form-label">Selecciona una fecha</label>
+            <input type="date" id="fecha-cita" class="form-input" onchange="cargarHorarios()" />
+
+            <label class="form-label" style="margin-top:20px;">Selecciona un horario</label>
+            <div class="horarios-grid" id="horarios-grid"></div>
+
+            <label class="form-label" style="margin-top:20px;">Motivo de consulta (opcional)</label>
+            <textarea id="motivo" class="form-input" rows="3" placeholder="Describe brevemente el motivo de tu consulta..."></textarea>
+
+            <div style="display:flex;gap:12px;margin-top:24px;">
+              <button class="btn-outline" onclick="irStep1()">← Anterior</button>
+              <button class="btn-primary" onclick="irStep3()">Siguiente →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div id="step3" class="step-content" style="display:none;">
+          <div class="form-card">
+            <h3 style="font-size:16px;font-weight:700;margin-bottom:20px;">Resumen de tu cita</h3>
+            <div class="resumen-grid">
+              <div class="resumen-item"><span class="res-label">Especialidad</span><span class="res-val" id="res-esp">—</span></div>
+              <div class="resumen-item"><span class="res-label">Médico</span><span class="res-val" id="res-doc">—</span></div>
+              <div class="resumen-item"><span class="res-label">Fecha</span><span class="res-val" id="res-fecha">—</span></div>
+              <div class="resumen-item"><span class="res-label">Hora</span><span class="res-val" id="res-hora">—</span></div>
+              <div class="resumen-item"><span class="res-label">Sede</span><span class="res-val" id="res-sede">—</span></div>
+              <div class="resumen-item"><span class="res-label">Tipo</span><span class="res-val" id="res-tipo">—</span></div>
+            </div>
+            <div style="display:flex;gap:12px;margin-top:24px;">
+              <button class="btn-outline" onclick="irStep2Desde3()">← Anterior</button>
+              <button class="btn-primary" onclick="confirmarCita()">✓ Confirmar cita</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ MIS CITAS ═══════════════════════════════════════════ -->
+      <section id="mis-citas" class="section">
+        <div class="page-title">Mis citas</div>
+        <p class="page-sub">Historial y próximas consultas programadas.</p>
+        <div class="table-card">
+          <div class="table-header">
+            <h3>Próximas citas</h3>
+            <button class="btn-primary" style="padding:8px 18px;font-size:.85rem;" onclick="showSection('agendar')">+ Nueva cita</button>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Fecha</th><th>Especialidad</th><th>Médico</th><th>Sede</th><th>Estado</th><th>Acción</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-citas"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ══ RESULTADOS ══════════════════════════════════════════ -->
+      <section id="resultados" class="section">
+        <div class="page-title">Resultados</div>
+        <p class="page-sub">Tus exámenes y resultados médicos disponibles.</p>
+        <div class="empty-state">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="1.5" width="48" height="48"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <p>No tienes resultados disponibles aún.</p>
+        </div>
+      </section>
+
+      <!-- ══ PERFIL ═══════════════════════════════════════════════ -->
+      <section id="perfil" class="section">
+        <div class="page-title">Mi perfil</div>
+        <p class="page-sub">Información de tu cuenta.</p>
+        <div class="form-card" style="max-width:500px;">
+          <div id="perfil-info"></div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- MODAL CONFIRMACIÓN -->
+  <div class="modal-overlay" id="modal-confirm">
+    <div class="modal-box">
+      <div class="modal-check">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" width="32" height="32"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3>¡Cita confirmada!</h3>
+      <p>Tu cita ha sido registrada exitosamente.</p>
+      <div class="modal-resumen">
+        <div><span>Especialidad:</span> <strong id="m-esp">—</strong></div>
+        <div><span>Médico:</span> <strong id="m-doc">—</strong></div>
+        <div><span>Fecha y hora:</span> <strong id="m-fecha">—</strong></div>
+        <div><span>Sede:</span> <strong id="m-sede">—</strong></div>
+      </div>
+      <button class="btn-primary" onclick="cerrarModal()">Ir a mis citas</button>
     </div>
   </div>
-</div>
 
+  <script src="../assets/engine/homeUsuario.js"></script>
 </body>
 </html>

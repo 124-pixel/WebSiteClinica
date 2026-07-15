@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Servicios Clínicos — Clínica Internacional</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../public/assets/design/navbar.css">
+  <link rel="stylesheet" href="../../public/assets/design/stylefooter.css">
+  <link rel="stylesheet" href="../../public/assets/design/styleServicio.css">
+  <script src="../../public/assets/engine/navbar.js" defer></script>
+  <script src="../../public/assets/engine/footer.js" defer></script>
+  <script src="../../public/assets/engine/servicio.js" defer></script>
+  <style>
+    
+  </style>
+</head>
+<body>
+
+  <div id="navbar-container"></div>
+
+  <!-- ══ SERVICIOS ══════════════════════════════════════════════ -->
+  <section class="servicios-section">
+    <h2 class="servicios-title">Nuestros servicios clínicos</h2>
+
+    <div class="filter-tabs">
+     <button class="filter-tab active" onclick="filtrarServicios('medica', this)">Atención médica</button>
+      <button class="filter-tab" onclick="filtrarServicios('prevencion', this)">Prevención y bienestar</button>
+      <button class="filter-tab" onclick="filtrarServicios('maternidad', this)">Programa de maternidad</button>
+      <button class="filter-tab" onclick="filtrarServicios('laboratorio', this)">Laboratorio</button>
+      <button class="filter-tab" onclick="filtrarServicios('imagenes', this)">Imágenes</button>
+      <button class="filter-tab" onclick="filtrarServicios('dental', this)">Sonrisa Total</button>
+      <button class="filter-tab" onclick="filtrarServicios('estetico', this)">Centro Estético</button>
+    </div>
+
+    <div class="servicios-grid" id="servicios-grid"></div>
+  </section>
+
+  <!-- ══ FAQ ════════════════════════════════════════════════════ -->
+  <section class="faq-section">
+    <h2 class="faq-title">Preguntas frecuentes</h2>
+
+    <div class="faq-tabs">
+      <button class="faq-tab active" onclick="switchFaq('virtual', this)">
+        
+        Médico Virtual
+      </button>
+      <button class="faq-tab" onclick="switchFaq('domicilio', this)">
+
+        Médico a Domicilio
+      </button>
+      <button class="faq-tab" onclick="switchFaq('hospitalizacion', this)">
+      
+        Hospitalización Domiciliaria
+      </button>
+      <button class="faq-tab" onclick="switchFaq('cobertura', this)">
+       
+        Cobertura y Duración
+      </button>
+    </div>
+
+    <!-- MÉDICO VIRTUAL -->
+    <div class="faq-content active" id="faq-virtual">
+      <div class="faq-list">
+        <div class="faq-item open">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Cómo puedo agendar una consulta médica virtual?
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">Puedes reservar tu cita rápidamente a través de nuestra web, app o llamando al (01) 619-6161 opción 1.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Cómo ingreso a mi teleconsulta médica?
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">Recibirás un enlace por correo electrónico o SMS con el acceso a tu teleconsulta. Solo necesitas un dispositivo con cámara y conexión a internet.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Qué tipo de atención brinda el servicio de médico virtual?
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">El médico virtual atiende consultas de medicina general, diagnóstico de enfermedades comunes, recetas médicas, orientación nutricional y seguimiento de tratamientos.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿La consulta médica virtual está cubierta por mi seguro?
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">Depende de tu plan de seguro. Te recomendamos verificar con tu aseguradora si el servicio de teleconsulta está incluido en tu cobertura.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Cuánto tiempo demora la entrega de recetas o medicamentos?
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">La receta digital se envía al correo electrónico inmediatamente después de la consulta. Para medicamentos a domicilio, el tiempo de entrega es de 2 a 4 horas.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Siempre recibiré un descanso médico después de mi consulta online?
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">El descanso médico se otorga según criterio clínico del médico tratante. No todas las consultas resultan en descanso médico, solo cuando el estado de salud lo justifica.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Cómo puedo reprogramar mi consulta médica online?
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">Puedes reprogramar tu cita llamando al (01) 619-6161, desde nuestra web o app, con al menos 2 horas de anticipación a tu cita.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÉDICO A DOMICILIO -->
+    <div class="faq-content" id="faq-domicilio">
+      <div class="faq-list">
+        <div class="faq-item open">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿En qué zonas de Lima atienden a domicilio?
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">Atendemos en Miraflores, San Isidro, Surco, La Molina, San Borja, Barranco, Jesús María, Lince y distritos aledaños. Consulta disponibilidad para tu zona.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Cuánto tiempo demora en llegar el médico a mi domicilio?
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">El tiempo promedio de llegada es de 45 a 90 minutos, dependiendo de la zona y la disponibilidad de médicos en el momento de la solicitud.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿El médico a domicilio puede realizar procedimientos?
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">El médico puede realizar nebulizaciones, inyectables, toma de muestras de laboratorio, curaciones simples y control de signos vitales en tu hogar.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿El servicio está disponible los fines de semana?
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">Sí, el servicio de médico a domicilio está disponible los 7 días de la semana, incluyendo feriados, en horario de 7 am a 10 pm.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOSPITALIZACIÓN -->
+    <div class="faq-content" id="faq-hospitalizacion">
+      <div class="faq-list">
+        <div class="faq-item open">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Qué enfermedades pueden atenderse en hospitalización domiciliaria?
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">Atendemos post-operatorios, infecciones tratables con antibióticos IV, insuficiencia cardíaca estable, EPOC, diabetes descompensada y pacientes oncológicos en tratamiento paliativo.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Qué equipos médicos incluye el servicio?
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">Incluye monitor de signos vitales, oxímetro, nebulizador, sueros, medicamentos IV y todo el material necesario para el tratamiento indicado por el médico.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Cuántas visitas médicas se realizan al día?
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">Dependiendo del estado del paciente, se realizan entre 1 y 3 visitas médicas diarias, además de visitas de enfermería para administración de medicamentos.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COBERTURA -->
+    <div class="faq-content" id="faq-cobertura">
+      <div class="faq-list">
+        <div class="faq-item open">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Qué seguros de salud aceptan?
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">Aceptamos todos los seguros de salud del mercado peruano, incluyendo EsSalud, SIS, Rímac, Pacífico, La Positiva, Mapfre, Sanitas y seguros corporativos.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Cuánto tiempo dura una consulta médica virtual?
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">La duración promedio de una teleconsulta es de 20 a 30 minutos, aunque puede variar según la complejidad del caso y las necesidades del paciente.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Puedo pagar con tarjeta de crédito o débito?
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">Sí, aceptamos pagos con tarjetas de crédito y débito Visa, Mastercard y American Express, además de transferencias bancarias y pagos en efectivo.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Tienen planes de salud corporativos?
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">Sí, ofrecemos planes corporativos a medida para empresas de todos los tamaños. Contáctanos al (01) 619-6161 para recibir una propuesta personalizada.</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="footer-border"></div>
+  <div id="footer-container"></div>
+
+</body>
+</html>

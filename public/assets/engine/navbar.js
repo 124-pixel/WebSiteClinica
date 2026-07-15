@@ -1,4 +1,10 @@
-// Contenido del Navbar en HTML utilizando template literals (comillas invertidas)
+// Favicon automático en todas las páginas
+const favicon = document.createElement('link');
+favicon.rel   = 'icon';
+favicon.type  = 'image/png';
+favicon.href  = '/public/assets/imgHome/favicon-removebg-preview.png';
+document.head.appendChild(favicon);
+
 const navbarHTML = `
 <header class="navbar">
     <div class="logo">
@@ -22,7 +28,6 @@ const navbarHTML = `
 </header>
 `;
 
-// Inyectar el navbar automáticamente cuando el DOM esté listo
 document.addEventListener("DOMContentLoaded", () => {
     const contenedor = document.getElementById("navbar-container");
     if (contenedor) {

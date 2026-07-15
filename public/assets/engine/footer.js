@@ -1,4 +1,3 @@
-// Contenido del Footer en HTML usando template literals
 const footerHTML = `
 <footer class="footer">
     <div class="footer-redes">
@@ -76,7 +75,6 @@ const footerHTML = `
 </footer>
 `;
 
-// Inyectar el footer cuando el DOM esté completamente cargado
 document.addEventListener("DOMContentLoaded", () => {
     const contenedorFooter = document.getElementById("footer-container");
     if (contenedorFooter) {

@@ -9,15 +9,13 @@ const HORARIOS = [
 let selectedDoctor   = null;
 let selectedDoctorId = null;
 let selectedHora     = null;
+let citasUsuarioCache = [];
 
-/* Mínima fecha = hoy */
 const today = new Date().toISOString().split('T')[0];
 document.getElementById('fecha-cita').min   = today;
 document.getElementById('fecha-cita').value = today;
 
-/* ===========================
-   CARGAR ESPECIALIDADES DESDE LA BD
-=========================== */
+
 async function cargarEspecialidades() {
   try {
     const res  = await fetch(`${API_URL}/especialidades`);
@@ -35,9 +33,7 @@ async function cargarEspecialidades() {
   }
 }
 
-/* ===========================
-   CARGAR SEDES DESDE LA BD
-=========================== */
+
 async function cargarSedes() {
   try {
     const res  = await fetch(`${API_URL}/sedes`);
@@ -76,16 +72,10 @@ function cargarUsuario() {
   }
 }
 
-/* ===========================
-   INICIALIZAR
-=========================== */
 cargarEspecialidades();
 cargarSedes();
 cargarUsuario();
 
-/* ===========================
-   NAVEGACIÓN
-=========================== */
 function showSection(id) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -94,13 +84,11 @@ function showSection(id) {
   const map = { inicio:0, agendar:1, 'mis-citas':2, resultados:3, perfil:4 };
   document.querySelectorAll('.nav-item')[map[id]]?.classList.add('active');
 
-  if (id === 'mis-citas') cargarMisCitas();
+  if (id === 'mis-citas')  cargarMisCitas();
+  if (id === 'resultados') cargarResultados();
   window.scrollTo(0, 0);
 }
 
-/* ===========================
-   CARGAR MÉDICOS DESDE API
-=========================== */
 async function cargarDoctores() {
   const esp  = document.getElementById('especialidad').value;
   const sec  = document.getElementById('doctors-section');
@@ -140,9 +128,6 @@ async function cargarDoctores() {
   }
 }
 
-/* ===========================
-   SELECCIONAR MÉDICO
-=========================== */
 function selDoc(el, id, nombre) {
   document.querySelectorAll('.doctor-card').forEach(c => c.classList.remove('selected'));
   el.classList.add('selected');
@@ -150,9 +135,6 @@ function selDoc(el, id, nombre) {
   selectedDoctorId = id;
 }
 
-/* ===========================
-   CARGAR HORARIOS REALES
-=========================== */
 async function cargarHorarios() {
   const fecha = document.getElementById('fecha-cita').value;
   const grid  = document.getElementById('horarios-grid');
@@ -184,9 +166,6 @@ function selHora(el, hora) {
   selectedHora = hora;
 }
 
-/* ===========================
-   PASOS DEL FORMULARIO
-=========================== */
 async function irStep2() {
   const esp = document.getElementById('especialidad').value;
   if (!esp)            { alert('Por favor selecciona una especialidad.'); return; }
@@ -241,9 +220,6 @@ function markStep(n) {
   document.getElementById('line-2-3').classList.toggle('done', n > 2);
 }
 
-/* ===========================
-   GUARDAR CITA EN SQL SERVER
-=========================== */
 async function confirmarCita() {
   try {
     const usuario = JSON.parse(
@@ -302,9 +278,6 @@ function cerrarModal() {
   showSection('mis-citas');
 }
 
-/* ===========================
-   CARGAR MIS CITAS DESDE LA BD
-=========================== */
 async function cargarMisCitas() {
   try {
     const usuario = JSON.parse(
@@ -317,6 +290,7 @@ async function cargarMisCitas() {
     const tbody = document.getElementById('tabla-citas');
 
     if (!data.ok || data.citas.length === 0) {
+      citasUsuarioCache = [];
       tbody.innerHTML = `
         <tr>
           <td colspan="6" style="text-align:center;padding:32px;color:#6b7280;">
@@ -326,18 +300,27 @@ async function cargarMisCitas() {
       return;
     }
 
+    citasUsuarioCache = data.citas;
+
     tbody.innerHTML = data.citas.map(c => {
-      const fecha  = new Date(c.fecha).toLocaleDateString('es-PE', { day:'2-digit', month:'short', year:'numeric' });
+      const fecha  = c.fecha ? c.fecha.toString().substring(0, 10) : '—';
+      const hora   = c.hora  ? c.hora.toString().substring(0, 5)   : '—';
       const medico = c.nombre_medico ? `${c.nombre_medico} ${c.apellido_medico || ''}`.trim() : '—';
       const estado = c.estado?.toLowerCase() || 'pendiente';
+      const tieneResultado = !!c.resultado;
+
+      const botonAccion = tieneResultado
+        ? `<button class="btn-sm primary" onclick="showSection('resultados')">Resultado</button>`
+        : `<button class="btn-sm outline">Ver</button>`;
+
       return `
         <tr>
-          <td>${fecha} · ${c.hora?.substring(0,5) || ''}</td>
+          <td>${fecha} · ${hora}</td>
           <td>${c.especialidad || '—'}</td>
           <td>${medico}</td>
           <td>${c.sede || '—'}</td>
           <td><span class="badge ${estado}">${c.estado}</span></td>
-          <td><button class="btn-sm outline">Ver</button></td>
+          <td>${botonAccion}</td>
         </tr>`;
     }).join('');
 
@@ -347,14 +330,119 @@ async function cargarMisCitas() {
 }
 
 /* ===========================
-   FILTRAR RESULTADOS
+   RESULTADOS Y RECETAS (datos reales)
 =========================== */
+/* ===========================
+   RESULTADOS Y RECETAS (Actualizado para Múltiples Registros JSON)
+=========================== */
+const TIPO_ICONO = {
+  laboratorio: '🧪',
+  informe:     '📄',
+  receta:      '💊',
+  imagen:      '🫁',
+};
+
+const TIPO_TITULO = {
+  laboratorio: 'Resultado de laboratorio',
+  informe:     'Informe médico',
+  receta:      'Receta médica',
+  imagen:      'Imagen / estudio',
+};
+
+async function cargarResultados() {
+  const contenedor = document.getElementById('resultados-list');
+
+  try {
+    // Reusa la caché si ya se cargó en "Mis citas"; si no, la trae de la API
+    if (!citasUsuarioCache.length) {
+      const usuario = JSON.parse(
+        localStorage.getItem('usuario') || sessionStorage.getItem('usuario')
+      );
+      if (!usuario) return;
+
+      const res  = await fetch(`${API_URL}/citas/usuario/${usuario.id}`);
+      const data = await res.json();
+      if (data.ok) citasUsuarioCache = data.citas;
+    }
+
+    // Filtramos solo las citas que tengan algún contenido en el resultado
+    const conResultado = citasUsuarioCache.filter(c => c.resultado);
+
+    if (!conResultado.length) {
+      contenedor.innerHTML = `
+        <p style="text-align:center;color:#6b7280;padding:32px 0;">
+          Todavía no tienes resultados ni recetas disponibles.
+        </p>`;
+      return;
+    }
+
+    let htmlCards = [];
+
+    conResultado.forEach(c => {
+      const fecha  = c.fecha ? c.fecha.toString().substring(0, 10) : '—';
+      const medico = c.nombre_medico ? `${c.nombre_medico} ${c.apellido_medico || ''}`.trim() : '—';
+      
+      try {
+        // Intentamos parsear el JSON múltiple enviado por el médico
+        const items = JSON.parse(c.resultado);
+        
+        if (Array.isArray(items)) {
+          // Por cada elemento dentro del JSON, generamos una tarjeta independiente para el paciente
+          items.forEach(item => {
+            htmlCards.push(`
+              <div class="resultado-card" data-tipo="${item.tipo}">
+                <div class="resultado-icon">${TIPO_ICONO[item.tipo] || '📄'}</div>
+                <div class="resultado-info">
+                  <div class="resultado-titulo">${TIPO_TITULO[item.tipo] || 'Resultado'}</div>
+                  <div class="resultado-meta">${fecha} &nbsp;·&nbsp; ${medico} – ${c.especialidad || ''} &nbsp;·&nbsp; ${c.sede || ''}</div>
+                  <div class="resultado-detalle" style="white-space: pre-wrap;">${item.detalle}</div>
+                </div>
+              </div>`);
+          });
+        }
+      } catch (e) {
+        // Modo de compatibilidad: Si no es un JSON (texto plano antiguo), lo renderizamos como antes
+        const tipoAntiguo = c.resultado_tipo || 'informe';
+        htmlCards.push(`
+          <div class="resultado-card" data-tipo="${tipoAntiguo}">
+            <div class="resultado-icon">${TIPO_ICONO[tipoAntiguo] || '📄'}</div>
+            <div class="resultado-info">
+              <div class="resultado-titulo">${TIPO_TITULO[tipoAntiguo] || 'Resultado'}</div>
+              <div class="resultado-meta">${fecha} &nbsp;·&nbsp; ${medico} – ${c.especialidad || ''} &nbsp;·&nbsp; ${c.sede || ''}</div>
+              <div class="resultado-detalle">${c.resultado}</div>
+            </div>
+          </div>`);
+      }
+    });
+
+    if (htmlCards.length === 0) {
+      contenedor.innerHTML = `<p style="text-align:center;color:#6b7280;padding:32px 0;">Todavía no tienes resultados ni recetas disponibles.</p>`;
+    } else {
+      contenedor.innerHTML = htmlCards.join('');
+    }
+
+  } catch (err) {
+    console.error('Error cargando resultados:', err);
+    contenedor.innerHTML = `<p style="text-align:center;color:#6b7280;padding:32px 0;">Error al cargar tus resultados.</p>`;
+  }
+}
+
 function filtrarResultados(btn, tipo) {
-  document.querySelectorAll(
-    '.horarios-grid .hora-btn, .section#resultados .hora-btn'
-  ).forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
+  // 1. Quitar la clase seleccionada de los botones de filtro de la sección resultados
+  // Ajustado para que apunte de forma segura a tus botones superiores de la vista de resultados
+  document.querySelectorAll('.section#resultados .hora-btn, #resultados button').forEach(b => b.classList.remove('selected'));
+  
+  // En caso de que tus botones usen clases de Tabler o clases activas personalizadas:
+  btn.parentNode.querySelectorAll('button').forEach(b => b.classList.remove('active', 'selected'));
+  btn.classList.add('active'); // O 'selected' según tus estilos CSS del layout del paciente
+
+  // 2. Filtrar las tarjetas mapeando el atributo data-tipo individual que extrajimos del JSON
   document.querySelectorAll('#resultados-list .resultado-card').forEach(c => {
-    c.style.display = (tipo === 'todos' || c.dataset.tipo === tipo) ? 'flex' : 'none';
+    if (tipo === 'todos' || c.dataset.tipo === tipo) {
+      c.style.display = 'flex';
+    } else {
+      c.style.display = 'none';
+    }
   });
+
 }
